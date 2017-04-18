@@ -139,7 +139,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0F397C381EA0DE4E002F3A38 /* pairearch_WLY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pairearch_WLY.entitlements; sourceTree = "<group>"; };
 		4B0612EA886C1F63FFF37775 /* Pods-pairearch_WLY.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pairearch_WLY.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pairearch_WLY/Pods-pairearch_WLY.debug.xcconfig"; sourceTree = "<group>"; };
 		B307BF451E7238E5005D7979 /* HomePageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageModel.h; sourceTree = "<group>"; };
 		B307BF461E7238E5005D7979 /* HomePageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageModel.m; sourceTree = "<group>"; };
@@ -433,7 +432,6 @@
 		B32228D81E52A2C300ED50ED /* pairearch_WLY */ = {
 			isa = PBXGroup;
 			children = (
-				0F397C381EA0DE4E002F3A38 /* pairearch_WLY.entitlements */,
 				B32228DC1E52A2C300ED50ED /* AppDelegate.h */,
 				B32228DD1E52A2C300ED50ED /* AppDelegate.m */,
 				B3F313FE1E52B672002DD95D /* Pairearch_WLY.pch */,
@@ -1458,7 +1456,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/",
-					"$(PROJECT_DIR)/BaiduTraceSDK.framework/",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/pairearch_WLY/Pairearch_WLY.pch";
@@ -1472,7 +1469,6 @@
 					"\"${PODS_ROOT}/Headers/Public/MJRefresh\"",
 					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
 					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
-					"$(PROJECT_DIR)/BaiduTraceSDK.framework/Headers/",
 				);
 				INFOPLIST_FILE = pairearch_WLY/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1504,7 +1500,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/",
-					"$(PROJECT_DIR)/BaiduTraceSDK.framework/",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/pairearch_WLY/Pairearch_WLY.pch";
@@ -1518,7 +1513,6 @@
 					"\"${PODS_ROOT}/Headers/Public/MJRefresh\"",
 					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
 					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
-					"$(PROJECT_DIR)/BaiduTraceSDK.framework/Headers/",
 				);
 				INFOPLIST_FILE = pairearch_WLY/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

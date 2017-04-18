@@ -70,8 +70,8 @@
     
     for (NSInteger i = 0; i < 4; i++) {
         UIButton *btn = (UIButton *)[self.selectView viewWithTag:(100 + i)];
-        [btn setTitleColor:UIColorFromRGB(0x666666) forState:UIControlStateNormal];
-        [btn setTitleColor:MAIN_THEME_COLOR forState:UIControlStateSelected];
+        [btn setTitleColor:UIColorFromRGB(0xF0FFF0) forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         if (i == 0) {
             btn.selected = YES;
             self.selectedBtn = btn;
