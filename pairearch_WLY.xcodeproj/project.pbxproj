@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F966D1E1EA6FEC100FCAD18 /* CIImage+SGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F966D041EA6FEC100FCAD18 /* CIImage+SGExtension.m */; };
+		0F966D1F1EA6FEC100FCAD18 /* ScanSuccessJumpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F966D071EA6FEC100FCAD18 /* ScanSuccessJumpVC.m */; };
+		0F966D201EA6FEC100FCAD18 /* SGGenerateQRCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F966D091EA6FEC100FCAD18 /* SGGenerateQRCodeVC.m */; };
+		0F966D211EA6FEC100FCAD18 /* SGScanningQRCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F966D0B1EA6FEC100FCAD18 /* SGScanningQRCodeVC.m */; };
+		0F966D221EA6FEC100FCAD18 /* QRCodebottomLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F966D0D1EA6FEC100FCAD18 /* QRCodebottomLeft@2x.png */; };
+		0F966D231EA6FEC100FCAD18 /* QRCodebottomLeft@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F966D0E1EA6FEC100FCAD18 /* QRCodebottomLeft@3x.png */; };
+		0F966D241EA6FEC100FCAD18 /* QRCodebottomRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F966D0F1EA6FEC100FCAD18 /* QRCodebottomRight@2x.png */; };
+		0F966D251EA6FEC100FCAD18 /* QRCodebottomRight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F966D101EA6FEC100FCAD18 /* QRCodebottomRight@3x.png */; };
+		0F966D261EA6FEC100FCAD18 /* QRCodeLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F966D111EA6FEC100FCAD18 /* QRCodeLine@2x.png */; };
+		0F966D271EA6FEC100FCAD18 /* QRCodeLine@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F966D121EA6FEC100FCAD18 /* QRCodeLine@3x.png */; };
+		0F966D281EA6FEC100FCAD18 /* QRCodeTopLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F966D131EA6FEC100FCAD18 /* QRCodeTopLeft@2x.png */; };
+		0F966D291EA6FEC100FCAD18 /* QRCodeTopLeft@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F966D141EA6FEC100FCAD18 /* QRCodeTopLeft@3x.png */; };
+		0F966D2A1EA6FEC100FCAD18 /* QRCodeTopRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F966D151EA6FEC100FCAD18 /* QRCodeTopRight@2x.png */; };
+		0F966D2B1EA6FEC100FCAD18 /* QRCodeTopRight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F966D161EA6FEC100FCAD18 /* QRCodeTopRight@3x.png */; };
+		0F966D2C1EA6FEC100FCAD18 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0F966D181EA6FEC100FCAD18 /* sound.caf */; };
+		0F966D2D1EA6FEC100FCAD18 /* SGAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F966D1B1EA6FEC100FCAD18 /* SGAlertView.m */; };
+		0F966D2E1EA6FEC100FCAD18 /* SGScanningQRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F966D1D1EA6FEC100FCAD18 /* SGScanningQRCodeView.m */; };
 		76DA3C9EDAD9C136CDB7CBDB /* libPods-pairearch_WLY.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E253EE02D936D5B70824B760 /* libPods-pairearch_WLY.a */; };
 		B307BF471E7238E5005D7979 /* HomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B307BF461E7238E5005D7979 /* HomePageModel.m */; };
 		B307BF501E7283D8005D7979 /* OrderStatusCOMMON212Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = B307BF4F1E7283D8005D7979 /* OrderStatusCOMMON212Controller.m */; };
@@ -128,8 +145,6 @@
 		B3CC54C61E6037D60072EA47 /* WQLPaoMaView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CC54C51E6037D60072EA47 /* WQLPaoMaView.m */; };
 		B3D3B2A21E66EA550033EF84 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D3B2901E66EA550033EF84 /* HomeViewController.m */; };
 		B3D3B2A31E66EA550033EF84 /* HomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3D3B2911E66EA550033EF84 /* HomeViewController.storyboard */; };
-		B3D3B2A41E66EA550033EF84 /* LatestNoticeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D3B2931E66EA550033EF84 /* LatestNoticeInfoViewController.m */; };
-		B3D3B2A51E66EA550033EF84 /* SafetyCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D3B2951E66EA550033EF84 /* SafetyCheckController.m */; };
 		B3D3B2A71E66EA550033EF84 /* SafetyCheckModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D3B29A1E66EA550033EF84 /* SafetyCheckModel.m */; };
 		B3D3B2A81E66EA550033EF84 /* HomeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D3B29D1E66EA550033EF84 /* HomeTableCell.m */; };
 		B3D3B2A91E66EA550033EF84 /* HomeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D3B29E1E66EA550033EF84 /* HomeTableCell.xib */; };
@@ -139,6 +154,29 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F966D031EA6FEC100FCAD18 /* CIImage+SGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CIImage+SGExtension.h"; sourceTree = "<group>"; };
+		0F966D041EA6FEC100FCAD18 /* CIImage+SGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CIImage+SGExtension.m"; sourceTree = "<group>"; };
+		0F966D061EA6FEC100FCAD18 /* ScanSuccessJumpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanSuccessJumpVC.h; sourceTree = "<group>"; };
+		0F966D071EA6FEC100FCAD18 /* ScanSuccessJumpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanSuccessJumpVC.m; sourceTree = "<group>"; };
+		0F966D081EA6FEC100FCAD18 /* SGGenerateQRCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGGenerateQRCodeVC.h; sourceTree = "<group>"; };
+		0F966D091EA6FEC100FCAD18 /* SGGenerateQRCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGGenerateQRCodeVC.m; sourceTree = "<group>"; };
+		0F966D0A1EA6FEC100FCAD18 /* SGScanningQRCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGScanningQRCodeVC.h; sourceTree = "<group>"; };
+		0F966D0B1EA6FEC100FCAD18 /* SGScanningQRCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGScanningQRCodeVC.m; sourceTree = "<group>"; };
+		0F966D0D1EA6FEC100FCAD18 /* QRCodebottomLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebottomLeft@2x.png"; sourceTree = "<group>"; };
+		0F966D0E1EA6FEC100FCAD18 /* QRCodebottomLeft@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebottomLeft@3x.png"; sourceTree = "<group>"; };
+		0F966D0F1EA6FEC100FCAD18 /* QRCodebottomRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebottomRight@2x.png"; sourceTree = "<group>"; };
+		0F966D101EA6FEC100FCAD18 /* QRCodebottomRight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebottomRight@3x.png"; sourceTree = "<group>"; };
+		0F966D111EA6FEC100FCAD18 /* QRCodeLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeLine@2x.png"; sourceTree = "<group>"; };
+		0F966D121EA6FEC100FCAD18 /* QRCodeLine@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeLine@3x.png"; sourceTree = "<group>"; };
+		0F966D131EA6FEC100FCAD18 /* QRCodeTopLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeTopLeft@2x.png"; sourceTree = "<group>"; };
+		0F966D141EA6FEC100FCAD18 /* QRCodeTopLeft@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeTopLeft@3x.png"; sourceTree = "<group>"; };
+		0F966D151EA6FEC100FCAD18 /* QRCodeTopRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeTopRight@2x.png"; sourceTree = "<group>"; };
+		0F966D161EA6FEC100FCAD18 /* QRCodeTopRight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeTopRight@3x.png"; sourceTree = "<group>"; };
+		0F966D181EA6FEC100FCAD18 /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.caf; sourceTree = "<group>"; };
+		0F966D1A1EA6FEC100FCAD18 /* SGAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAlertView.h; sourceTree = "<group>"; };
+		0F966D1B1EA6FEC100FCAD18 /* SGAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAlertView.m; sourceTree = "<group>"; };
+		0F966D1C1EA6FEC100FCAD18 /* SGScanningQRCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGScanningQRCodeView.h; sourceTree = "<group>"; };
+		0F966D1D1EA6FEC100FCAD18 /* SGScanningQRCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGScanningQRCodeView.m; sourceTree = "<group>"; };
 		4B0612EA886C1F63FFF37775 /* Pods-pairearch_WLY.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pairearch_WLY.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pairearch_WLY/Pods-pairearch_WLY.debug.xcconfig"; sourceTree = "<group>"; };
 		B307BF451E7238E5005D7979 /* HomePageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageModel.h; sourceTree = "<group>"; };
 		B307BF461E7238E5005D7979 /* HomePageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageModel.m; sourceTree = "<group>"; };
@@ -359,10 +397,6 @@
 		B3D3B28F1E66EA550033EF84 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		B3D3B2901E66EA550033EF84 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		B3D3B2911E66EA550033EF84 /* HomeViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeViewController.storyboard; sourceTree = "<group>"; };
-		B3D3B2921E66EA550033EF84 /* LatestNoticeInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatestNoticeInfoViewController.h; sourceTree = "<group>"; };
-		B3D3B2931E66EA550033EF84 /* LatestNoticeInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatestNoticeInfoViewController.m; sourceTree = "<group>"; };
-		B3D3B2941E66EA550033EF84 /* SafetyCheckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafetyCheckController.h; sourceTree = "<group>"; };
-		B3D3B2951E66EA550033EF84 /* SafetyCheckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafetyCheckController.m; sourceTree = "<group>"; };
 		B3D3B2991E66EA550033EF84 /* SafetyCheckModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafetyCheckModel.h; sourceTree = "<group>"; };
 		B3D3B29A1E66EA550033EF84 /* SafetyCheckModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafetyCheckModel.m; sourceTree = "<group>"; };
 		B3D3B29C1E66EA550033EF84 /* HomeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableCell.h; sourceTree = "<group>"; };
@@ -392,6 +426,76 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F966D011EA6FEC100FCAD18 /* SGQRCode */ = {
+			isa = PBXGroup;
+			children = (
+				0F966D021EA6FEC100FCAD18 /* Category */,
+				0F966D051EA6FEC100FCAD18 /* Controller */,
+				0F966D0C1EA6FEC100FCAD18 /* Resources */,
+				0F966D171EA6FEC100FCAD18 /* Sound */,
+				0F966D191EA6FEC100FCAD18 /* View */,
+			);
+			path = SGQRCode;
+			sourceTree = "<group>";
+		};
+		0F966D021EA6FEC100FCAD18 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				0F966D031EA6FEC100FCAD18 /* CIImage+SGExtension.h */,
+				0F966D041EA6FEC100FCAD18 /* CIImage+SGExtension.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		0F966D051EA6FEC100FCAD18 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0F966D061EA6FEC100FCAD18 /* ScanSuccessJumpVC.h */,
+				0F966D071EA6FEC100FCAD18 /* ScanSuccessJumpVC.m */,
+				0F966D081EA6FEC100FCAD18 /* SGGenerateQRCodeVC.h */,
+				0F966D091EA6FEC100FCAD18 /* SGGenerateQRCodeVC.m */,
+				0F966D0A1EA6FEC100FCAD18 /* SGScanningQRCodeVC.h */,
+				0F966D0B1EA6FEC100FCAD18 /* SGScanningQRCodeVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0F966D0C1EA6FEC100FCAD18 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0F966D0D1EA6FEC100FCAD18 /* QRCodebottomLeft@2x.png */,
+				0F966D0E1EA6FEC100FCAD18 /* QRCodebottomLeft@3x.png */,
+				0F966D0F1EA6FEC100FCAD18 /* QRCodebottomRight@2x.png */,
+				0F966D101EA6FEC100FCAD18 /* QRCodebottomRight@3x.png */,
+				0F966D111EA6FEC100FCAD18 /* QRCodeLine@2x.png */,
+				0F966D121EA6FEC100FCAD18 /* QRCodeLine@3x.png */,
+				0F966D131EA6FEC100FCAD18 /* QRCodeTopLeft@2x.png */,
+				0F966D141EA6FEC100FCAD18 /* QRCodeTopLeft@3x.png */,
+				0F966D151EA6FEC100FCAD18 /* QRCodeTopRight@2x.png */,
+				0F966D161EA6FEC100FCAD18 /* QRCodeTopRight@3x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0F966D171EA6FEC100FCAD18 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				0F966D181EA6FEC100FCAD18 /* sound.caf */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
+		0F966D191EA6FEC100FCAD18 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0F966D1A1EA6FEC100FCAD18 /* SGAlertView.h */,
+				0F966D1B1EA6FEC100FCAD18 /* SGAlertView.m */,
+				0F966D1C1EA6FEC100FCAD18 /* SGScanningQRCodeView.h */,
+				0F966D1D1EA6FEC100FCAD18 /* SGScanningQRCodeView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		292A3E722AE506B1E6F3136F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -873,6 +977,7 @@
 		B384109E1E5C3CFE00F7069F /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				0F966D011EA6FEC100FCAD18 /* SGQRCode */,
 				B3FE7FD21E973F9800652BB8 /* UMOnlineConfig */,
 				B3CC54C31E6037D60072EA47 /* WQLPaoMaView */,
 				B3CC54BC1E6020090072EA47 /* AutoHeight */,
@@ -1018,10 +1123,6 @@
 				B3D3B28F1E66EA550033EF84 /* HomeViewController.h */,
 				B3D3B2901E66EA550033EF84 /* HomeViewController.m */,
 				B3D3B2911E66EA550033EF84 /* HomeViewController.storyboard */,
-				B3D3B2921E66EA550033EF84 /* LatestNoticeInfoViewController.h */,
-				B3D3B2931E66EA550033EF84 /* LatestNoticeInfoViewController.m */,
-				B3D3B2941E66EA550033EF84 /* SafetyCheckController.h */,
-				B3D3B2951E66EA550033EF84 /* SafetyCheckController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1134,13 +1235,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				B37CB26D1E6FF08400A1463F /* OrderDetailCell.xib in Resources */,
+				0F966D271EA6FEC100FCAD18 /* QRCodeLine@3x.png in Resources */,
+				0F966D2C1EA6FEC100FCAD18 /* sound.caf in Resources */,
 				B381DAE51E77DB8B00D752C1 /* CommonPickerView.xib in Resources */,
+				0F966D2B1EA6FEC100FCAD18 /* QRCodeTopRight@3x.png in Resources */,
+				0F966D2A1EA6FEC100FCAD18 /* QRCodeTopRight@2x.png in Resources */,
+				0F966D251EA6FEC100FCAD18 /* QRCodebottomRight@3x.png in Resources */,
+				0F966D221EA6FEC100FCAD18 /* QRCodebottomLeft@2x.png in Resources */,
 				B3D3B2AB1E66EA550033EF84 /* SaftyCheckCell.xib in Resources */,
 				B307BF951E777F3B005D7979 /* RejectSignController.storyboard in Resources */,
 				B37BA6D01E80FA29001A74B8 /* AbnormalReportCell.xib in Resources */,
+				0F966D241EA6FEC100FCAD18 /* QRCodebottomRight@2x.png in Resources */,
+				0F966D231EA6FEC100FCAD18 /* QRCodebottomLeft@3x.png in Resources */,
 				B357276E1E543268003F9B2F /* OrdersCenterController.storyboard in Resources */,
 				B307BF901E767DE3005D7979 /* CommonNomalSignCell.xib in Resources */,
 				B37BA6CB1E80D300001A74B8 /* AbnormalReportController.storyboard in Resources */,
+				0F966D281EA6FEC100FCAD18 /* QRCodeTopLeft@2x.png in Resources */,
+				0F966D261EA6FEC100FCAD18 /* QRCodeLine@2x.png in Resources */,
 				B32228E91E52A2C300ED50ED /* LaunchScreen.storyboard in Resources */,
 				B38411461E5E91DE00F7069F /* CancelLoginCell.xib in Resources */,
 				B37CB26B1E6FF08400A1463F /* GetRefuseFooterView.xib in Resources */,
@@ -1150,6 +1261,7 @@
 				B307BF711E728C0A005D7979 /* OutFacCheckCell.xib in Resources */,
 				B38411411E5E89C700F7069F /* PersonalCenterCell.xib in Resources */,
 				B37CB2711E6FF08400A1463F /* StartTransportFooterView.xib in Resources */,
+				0F966D291EA6FEC100FCAD18 /* QRCodeTopLeft@3x.png in Resources */,
 				B3A4A3CE1E70ECE1001C551B /* BackListDetailCell.xib in Resources */,
 				B3D3B2A91E66EA550033EF84 /* HomeTableCell.xib in Resources */,
 				B307BF6C1E728822005D7979 /* Common212Cell.xib in Resources */,
@@ -1248,15 +1360,17 @@
 				B384111C1E5D886000F7069F /* LoginTextField.m in Sources */,
 				B307BF9D1E7786B3005D7979 /* HaveBackOrderController.m in Sources */,
 				B384113A1E5E832C00F7069F /* AboutUsViewController.m in Sources */,
+				0F966D211EA6FEC100FCAD18 /* SGScanningQRCodeVC.m in Sources */,
 				B307BF931E777D99005D7979 /* RejectSignController.m in Sources */,
-				B3D3B2A51E66EA550033EF84 /* SafetyCheckController.m in Sources */,
 				B37CB2AB1E7032B400A1463F /* OrderStatusBACK230Controller.m in Sources */,
+				0F966D2E1EA6FEC100FCAD18 /* SGScanningQRCodeView.m in Sources */,
 				B37CB2801E700CB000A1463F /* BackDetailModel.m in Sources */,
 				B37CB24A1E6FEFCC00A1463F /* OrderStatusKA230Controller.m in Sources */,
 				B37CB2681E6FF08400A1463F /* EvaluationTableCell.m in Sources */,
 				B37BA6CF1E80FA29001A74B8 /* AbnormalReportCell.m in Sources */,
 				B37CB2461E6FEFCC00A1463F /* OrderStatusKA212Controller.m in Sources */,
 				B38410FB1E5D875700F7069F /* FileHelper.m in Sources */,
+				0F966D1F1EA6FEC100FCAD18 /* ScanSuccessJumpVC.m in Sources */,
 				B307BF7C1E72A07F005D7979 /* DetailCommonModel.m in Sources */,
 				B307BF561E72848C005D7979 /* OrderStatusCOMMON226Controller.m in Sources */,
 				B384110D1E5D875700F7069F /* AlertInfoUtil.m in Sources */,
@@ -1265,6 +1379,7 @@
 				B38410A21E5C3D7D00F7069F /* CWStarRateView.m in Sources */,
 				B307BF701E728C0A005D7979 /* OutFacCheckCell.m in Sources */,
 				B307BF8F1E767DE3005D7979 /* CommonNomalSignCell.m in Sources */,
+				0F966D201EA6FEC100FCAD18 /* SGGenerateQRCodeVC.m in Sources */,
 				B381DADE1E779D2C00D752C1 /* CommonBackModel.m in Sources */,
 				B336CC181E88C026000F3928 /* BaseViewController.m in Sources */,
 				B384108C1E5BD9CA00F7069F /* ListTableCell.m in Sources */,
@@ -1286,6 +1401,7 @@
 				B37CB26C1E6FF08400A1463F /* OrderDetailCell.m in Sources */,
 				B37CB26E1E6FF08400A1463F /* OrderDetailHeaderView.m in Sources */,
 				B336CC1E1E88C4C6000F3928 /* OrderStatusKABaseController.m in Sources */,
+				0F966D1E1EA6FEC100FCAD18 /* CIImage+SGExtension.m in Sources */,
 				B384111F1E5D893C00F7069F /* LoginModel.m in Sources */,
 				B35727501E5404EA003F9B2F /* OrdersCenterController.m in Sources */,
 				B38411451E5E91DE00F7069F /* CancelLoginCell.m in Sources */,
@@ -1298,13 +1414,13 @@
 				B307BF5C1E7284B6005D7979 /* OrderStatusCOMMON230Controller.m in Sources */,
 				B307BF501E7283D8005D7979 /* OrderStatusCOMMON212Controller.m in Sources */,
 				B38410881E5BD4F400F7069F /* OrdersCollectionCell.m in Sources */,
+				0F966D2D1EA6FEC100FCAD18 /* SGAlertView.m in Sources */,
 				B38411311E5E830400F7069F /* CancelLoginTableViewCell.m in Sources */,
 				B38411321E5E830400F7069F /* FeedbackIdeaTableViewCell.m in Sources */,
 				B3A4A3CD1E70ECE1001C551B /* BackListDetailCell.m in Sources */,
 				B357277A1E5435AE003F9B2F /* MyLocationManager.m in Sources */,
 				B37CB2AC1E7032B400A1463F /* OrderStatusBACK238Controller.m in Sources */,
 				B37CB2A71E7032B400A1463F /* OrderStatusBACK212Controller.m in Sources */,
-				B3D3B2A41E66EA550033EF84 /* LatestNoticeInfoViewController.m in Sources */,
 				B37CB2A81E7032B400A1463F /* OrderStatusBACK220Controller.m in Sources */,
 				B38411241E5E827600F7069F /* PersonalCenterViewController.m in Sources */,
 				B38410B61E5D375600F7069F /* BaseModel.m in Sources */,
