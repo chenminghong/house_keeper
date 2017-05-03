@@ -42,7 +42,7 @@
     self.tabBar.barTintColor = TOP_BOTTOMBAR_COLOR;
     self.viewControllers = @[homeNC, orderNC, privateNC];
     
-    NSArray *titles = @[@"首页", @"运单中心", @"我的"];
+    NSArray *titles = @[@"首页", @"查询中心", @"我的"];
     NSArray *images = @[@"zhuye", @"yundanzhongxin", @"gerenzhongxin"];
     [self.tabBar.items enumerateObjectsUsingBlock:^(UITabBarItem *item, NSUInteger idx, BOOL *stop) {
         [item setTitle:titles[idx]];
