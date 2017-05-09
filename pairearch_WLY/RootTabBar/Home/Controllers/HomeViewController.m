@@ -15,6 +15,7 @@
 #import "HomePageModel.h"
 #import "SGScanningQRCodeVC.h"
 #import <AVFoundation/AVFoundation.h>
+#import "AdaptiveCodeController.h"
 
 @interface HomeViewController ()
 
@@ -55,13 +56,23 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.navigationController.navigationBar.hidden = YES;
+    if (!self.navigationController.isNavigationBarHidden) {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }
     self.userNameLabel.text = [LoginModel shareLoginModel].name;
     self.userNumberLabel.text = [LoginModel shareLoginModel].tel;
     
     [self.paoma startAnimation];
-    
 }
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.navigationController.viewControllers.count >= 2) {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
+}
+
 
 //程序活跃的时候调用
 - (void)applicationDidBecomeActiveNotificationAction {
@@ -103,13 +114,30 @@
     return _headLabel;
 }
 
+
+
+/**
+ 调用接口返回扫描一维码结果
+
+ @param urlStr 接口名称
+ @param paraDict 需要传递的参数
+ */
+- (void)networkWithUrlStr:(NSString *)urlStr paraDict:(NSDictionary *)paraDict {
+    [NetworkHelper POST:urlStr parameters:paraDict progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSInteger status = [responseObject[@"result"] integerValue];
+        NSString *msg = responseObject[@"remark"];
+        [MBProgressHUD bwm_showTitle:msg toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
+    } failure:^(NSError *error) {
+        [MBProgressHUD bwm_showTitle:error.userInfo[ERROR_MSG] toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
+    }];
+}
+
 #pragma mark -- ButtonAction
 
 - (IBAction)telePhoneAction:(UIButton *)sender {
     NSString *str=[NSString stringWithFormat:@"telprompt://%@", @"021-66188125"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
-
 
 /**
  扫描二维码按钮点击事件
@@ -124,7 +152,8 @@
         SGScanningQRCodeVC *codeVC = [SGScanningQRCodeVC getSgscanningQRCodeVCWithResultBlock:^(NSString *scanResult) {
             //扫描结束回调
             NSLog(@"%@", scanResult);
-            
+            NSDictionary *paraDict = @{@"userName":[LoginModel shareLoginModel].tel.length>0? [LoginModel shareLoginModel].tel:@"", @"orderCode":scanResult, @"lat":@"0.0", @"lng":@"0.0"};
+            [self networkWithUrlStr:QRCODE_SCAN_API paraDict:paraDict];
         }];
         NavigationController *naviNC = [[NavigationController alloc] initWithRootViewController:codeVC];
         codeVC.navigationItem.leftBarButtonItem = [NavigationController getNavigationBackItemWithTarget:codeVC SEL:@selector(dismissModalViewControllerAnimated:)];
@@ -141,6 +170,9 @@
  */
 - (IBAction)selfGetNumberAction:(UIButton *)sender {
     NSLog(@"%@", sender.currentTitle);
+    AdaptiveCodeController *adaptiveVC = [AdaptiveCodeController new];
+    [self.navigationController pushViewController:adaptiveVC animated:YES];
+    
 }
 
 - (void)dealloc {

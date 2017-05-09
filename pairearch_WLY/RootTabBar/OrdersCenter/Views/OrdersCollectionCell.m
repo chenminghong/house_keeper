@@ -90,7 +90,7 @@
 
 //  请求网络数据
 - (void)loadDataFromNet {
-    NSString *driverTel = [[NSUserDefaults standardUserDefaults] objectForKey:USER_NUMBER];
+    NSString *driverTel = [[NSUserDefaults standardUserDefaults] objectForKey:USER_NAME];
     [self.listModelArr removeAllObjects];
     [OrderListModel getDataWithParameters:@{@"driverTel":driverTel? driverTel:@"", @"status":self.type? self.type:@""} endBlock:^(id model, NSError *error) {
         if (!error) {

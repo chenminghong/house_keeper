@@ -39,8 +39,6 @@
 
 @property (nonatomic, copy) NSString *driverCardUrl;  //身份证号对应的链接地址的表的id
 
-@property (nonatomic, copy) NSString *userId;  //表的id
-
 @property (nonatomic, copy) NSString *idCard; //身份证号
 
 @property (nonatomic, copy) NSString *lastLoginTime;  //身份证号
@@ -51,11 +49,20 @@
 
 @property (nonatomic, copy) NSString *modifyUser; //修改人
 
-@property (nonatomic, copy) NSString *name; //用户名
-
 @property (nonatomic, copy) NSString *pwd;  //密码
 
-@property (nonatomic, copy) NSString *tel;  //密码
+@property (nonatomic, copy) NSString *tel;  //用户名
+
+@property (nonatomic, copy) NSString *name; //门岗名称
+
+@property (nonatomic, copy) NSString *loginacct; //用户名
+
+@property (nonatomic, copy) NSString *deptId;
+
+@property (nonatomic, copy) NSString *userId;  //表的id
+
+@property (nonatomic, copy) NSString *status;  //状态
+
 
 
 //初始化

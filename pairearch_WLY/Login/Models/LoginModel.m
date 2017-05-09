@@ -49,13 +49,12 @@
         }
         NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         NSInteger resultFlag = [[dataDict objectForKey:@"loginResult"] integerValue];
-        NSString *remark = [NSString stringWithFormat:@"%@", dataDict[@"remark"]];
         
-        //如果resultFlag是NO，说明用户名和密码不正确，直接return
+        //如果resultFlag是0，说明用户名和密码不正确，直接return
         if (resultFlag == 0) {
-            endBlock(nil, [NSError errorWithDomain:PAIREACH_BASE_URL code:resultFlag userInfo:@{ERROR_MSG:remark}]);
+            endBlock(nil, [NSError errorWithDomain:PAIREACH_BASE_URL code:resultFlag userInfo:@{ERROR_MSG:@"账号或密码错误，请重新登录！"}]);
         } else {
-            NSDictionary *responseEntity = [dataDict objectForKey:@"cpDriver"];
+            NSDictionary *responseEntity = [dataDict objectForKey:@"operator"];
             //将登录成功返回的数据存到model中
             [[LoginModel shareLoginModel] updateUserInfoWithInfoDict:responseEntity];
             endBlock([LoginModel shareLoginModel], nil);

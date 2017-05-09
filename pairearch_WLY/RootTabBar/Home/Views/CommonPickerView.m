@@ -21,7 +21,7 @@
     CommonPickerView *pickerView = [self getPickerView];
     pickerView.backgroundColor = [UIColor clearColor];
     pickerView.frame = view.bounds;
-    pickerView.pickerView.backgroundColor = ABNORMAL_THEME_COLOR;
+    pickerView.pickerView.backgroundColor = TOP_BOTTOMBAR_COLOR;
     pickerView.pickBlock = pickBlock;
     pickerView.dataList = titleList;
     [pickerView.pickerView reloadAllComponents];
@@ -44,6 +44,23 @@
     }];
 }
 
+- (IBAction)completeButtonAction:(UIButton *)sender {
+    if (self.pickBlock) {
+        NSInteger selectRow = [self.pickerView selectedRowInComponent:0];
+        self.pickBlock(self.dataList[selectRow]);
+        [self hidePickerView];
+    }
+}
+
+- (void)setSelectedRowWithSelectedTitle:(NSString *)selectedTitle {
+    for (NSInteger index = 0; index < self.dataList.count; index++) {
+        NSString *title = self.dataList[index];
+        if ([title isEqualToString:title]) {
+            [self.pickerView selectRow:index inComponent:0 animated:NO];
+            break;
+        }
+    }
+}
 
 
 
@@ -57,16 +74,14 @@
     return self.dataList.count;
 }
 
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
+    return 30.0;
+}
+
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     return self.dataList[row];
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    if (self.pickBlock) {
-        self.pickBlock(self.dataList[row]);
-        [self hidePickerView];
-    }
-}
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -11,7 +11,6 @@
 #import "LoginTextField.h"
 #import "AppDelegate.h"
 #import "LoginModel.h"
-#import "InputValueCheckUtil.h"
 #import "LoginModel.h"
 
 
@@ -57,12 +56,12 @@
         self.userNameTF = [[LoginTextField alloc] initWithFrame:CGRectMake(50, 160 * kHeightProportion, CGRectGetWidth(self.view.bounds) - 100, 40)];
         self.userNameTF.iconName = @"usernumber";
         self.userNameTF.backgroundColor = [UIColor whiteColor];
-        self.userNameTF.placeholder = @"手机号";
-        self.userNameTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+        self.userNameTF.placeholder = @"账号";
+        self.userNameTF.keyboardType = UIKeyboardTypeASCIICapable;
         self.userNameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         self.userNameTF.borderStyle = UITextBorderStyleBezel;
         self.userNameTF.returnKeyType = UIReturnKeyDone;
-        NSString *userNumber = [[NSUserDefaults standardUserDefaults] objectForKey:USER_NUMBER];
+        NSString *userNumber = [[NSUserDefaults standardUserDefaults] objectForKey:USER_NAME];
         if (userNumber.length) {
             self.userNameTF.text = [NSString stringWithFormat:@"%@", userNumber];
             [self.userNameTF textDidChangeAction:self.userNameTF];
@@ -129,7 +128,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"欢迎登录我来运";
+    self.title = @"欢迎登录排队管家";
     
     //登录界面背景色
     self.view.backgroundColor = [UIColor whiteColor];
@@ -147,7 +146,7 @@
 //    self.navigationController.navigationBar.barTintColor = UIColorFromRGB(0xF2F2F2);
 //    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:MAIN_THEME_COLOR, NSFontAttributeName:[UIFont systemFontOfSize:18.0]}];
     
-    NSString *phoneNumber = [[NSUserDefaults standardUserDefaults] valueForKey:USER_NUMBER];
+    NSString *phoneNumber = [[NSUserDefaults standardUserDefaults] valueForKey:USER_NAME];
     if (phoneNumber.length) {
         self.userNameTF.text = phoneNumber;
     }
@@ -163,10 +162,10 @@
 //退出登录页面
 - (void)hideLoginPage {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSString *oldUserName = [[NSUserDefaults standardUserDefaults] objectForKey:USER_NUMBER];
+    NSString *oldUserName = [[NSUserDefaults standardUserDefaults] objectForKey:USER_NAME];
     BOOL isChangeNumber = [self.userNameTF.text isEqualToString:oldUserName];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:LOGIN_STATE];
-    [[NSUserDefaults standardUserDefaults] setObject:self.userNameTF.text forKey:USER_NUMBER];
+    [[NSUserDefaults standardUserDefaults] setObject:self.userNameTF.text forKey:USER_NAME];
     [[NSUserDefaults standardUserDefaults] setObject:self.passwordTF.text forKey:USER_ACCOUNT];
     if ([[delegate.window.rootViewController class] isSubclassOfClass:[UITabBarController class]]) {
         [self dismissViewControllerAnimated:YES completion:^{
@@ -222,14 +221,14 @@
     }
     
     //验证手机号是否正确
-    if (![InputValueCheckUtil checkPhoneNum:self.userNameTF.text]) {
-        [MBProgressHUD bwm_showTitle:@"输入的手机号格式有误！" toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
-        return;
-    }
+//    if (![InputValueCheckUtil checkPhoneNum:self.userNameTF.text]) {
+//        [MBProgressHUD bwm_showTitle:@"输入的手机号格式有误！" toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
+//        return;
+//    }
     
     MBProgressHUD *hud = [MBProgressHUD bwm_showHUDAddedTo:self.view title:@"登录中..."];
-    NSDictionary *paramDict = @{@"driverTel":[NSString stringWithFormat:@"%@", self.userNameTF.text],
-                                @"driverPwd":[NSString stringWithFormat:@"%@", [BaseModel md5HexDigest:self.passwordTF.text]],
+    NSDictionary *paramDict = @{@"workerName":[NSString stringWithFormat:@"%@", self.userNameTF.text],
+                                @"workerPwd":[NSString stringWithFormat:@"%@", [BaseModel md5HexDigest:self.passwordTF.text]],
                                 @"deviceRoot":@"0",
                                 @"sdkVersion":[[UIDevice currentDevice] systemVersion],
                                 @"androidID":@"",

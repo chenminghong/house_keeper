@@ -22,9 +22,11 @@
 #import <Masonry.h>
 #import <BaiduMobStat.h>
 #import <SAMKeychain.h>
+#import <IQKeyboardManager.h>
 
 
 //自定义头文件
+#import "InputValueCheckUtil.h"
 #import "NavigationController.h"
 #import "NetworkHelper.h"
 #import "BaseModel.h"
@@ -50,8 +52,8 @@
 #define SERVER_ID    133374           //百度鹰眼服务的serverId
 #define APP_KEY      @"e89d870640"     //百度统计AppKey
 #define LOGIN_STATE  @"login_state"   //登录状态关键字
-#define USER_NUMBER  @"user_number"   //存储电话
-#define USER_ACCOUNT @"user_account"  //用户密码
+#define USER_NAME  @"user_number"   //存储电话
+#define USER_ACCOUNT @"user_name"  //用户密码
 #define USER_INFO    @"user_info"     //用户信息
 #define APP_ID       @"1218642055"    //Apple ID
 #define JPUSH_APPKEY @"1535cdca2ca8a6157f06ccaa"  //极光推送SDK的APPKEY

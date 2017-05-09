@@ -21,6 +21,13 @@ typedef void(^PickerViewBlock)(NSString *reasonTitle);
 //显示选择栏
 + (CommonPickerView *)showPickerViewInView:(UIView *)view titleList:(NSArray *)titleList pickBlock:(PickerViewBlock)pickBlock;
 
+/**
+ 设置选中的行
+
+ @param selectedTitle 当前选中的title
+ */
+- (void)setSelectedRowWithSelectedTitle:(NSString *)selectedTitle;
+
 //隐藏选择栏
 - (void)hidePickerView;
 

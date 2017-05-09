@@ -120,7 +120,7 @@
 //请求修改密码
 - (void)PostRequestForAlterPasswordWithOldPwd:(NSString *)oldPwd AndPwd:(NSString *)pwd {
     [self.view endEditing:YES];
-    NSDictionary *paraDict = @{@"mobile":[[NSUserDefaults standardUserDefaults] objectForKey:USER_NUMBER], @"newPwd":[BaseModel md5HexDigest:self.passwordTF.text]};
+    NSDictionary *paraDict = @{@"mobile":[[NSUserDefaults standardUserDefaults] objectForKey:USER_NAME], @"newPwd":[BaseModel md5HexDigest:self.passwordTF.text]};
     
     MBProgressHUD *hud = [MBProgressHUD bwm_showHUDAddedTo:self.view title:@"正在修改密码..."];
     [[NetworkHelper shareClient] POST:CHANGE_PASSWORD_API parameters:paraDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

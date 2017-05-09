@@ -10,7 +10,6 @@
 
 #import "LoginViewController.h"
 #import "RootTabController.h"
-#import <XHVersion.h>
 
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
@@ -28,7 +27,7 @@
     }
     
     //注册本地通知
-    [self registerLocalNotification];
+//    [self registerLocalNotification];
     
     //网络变化执行动作
     [self netWorkDidChangeAction];

@@ -13,10 +13,9 @@
 
 /*============================BaseUrl相关=============================*/
 //API前缀定义
-//#define PAIREACH_BASE_URL                @"http://192.168.1.14:8086/tts/client/"   //王敬刚
-#define PAIREACH_BASE_URL                @"http://106.14.39.65:8285/itip/client/"  //测试线上
-//#define PAIREACH_BASE_URL                @"http://192.168.1.14:8086/itip/client/"  //备用
-//#define PAIREACH_BASE_URL                @"http://dt.paireach.com/itip/client/"   //双至域名
+#define PAIREACH_BASE_URL                @"http://106.14.39.65:8385/itip/client/"    //测试
+//#define PAIREACH_BASE_URL                @"http://139.196.206.32:8285/itip/client/"  //线上
+//#define PAIREACH_BASE_URL                @"http://dt.paireach.com/itip/client/"      //双至域名
 
 
 /*============================首页相关=============================*/
@@ -24,18 +23,22 @@
 //首页数据显示
 #define HOME_PAGE_DATA_API                @"homePageDisplay.a"              //get
 
-//安全选项检查
-#define SAFETY_CONFIRMATION_API           @"safeVeriSave.a"                 //post
+//一维码扫描接口
+#define QRCODE_SCAN_API                   @"gateHandling.a"                 //get
 
-//安全检查
-#define DAFETY_CHECK_API                  @"isSafeChecked.a"                //get
+//下一步订单校验
+#define HOME_ORDER_CHECK_API              @"queryDriverInfoByCode.a"        //post
+
+//提交司机信息
+#define COMMIT_DRIVERINFO_API             @"orderSince.a"                   //post
+
 
 
 
 /*============================个人中心用户相关=============================*/
 
 //用户登录
-#define USER_LOGIN_API                    @"loginForDriver.a"               //post
+#define USER_LOGIN_API                    @"workerLogin.a"               //post
 
 //修改密码
 #define CHANGE_PASSWORD_API               @"changeDriverPwd.a"              //post

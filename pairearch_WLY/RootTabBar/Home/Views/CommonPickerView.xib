@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,19 +16,31 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Irn-ht-gvi">
-                    <rect key="frame" x="0.0" y="259" width="375" height="150"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="150" id="wdB-b3-m7y"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="167.5" width="375" height="333.5"/>
                     <connections>
                         <outlet property="dataSource" destination="iN0-l3-epB" id="5He-gZ-hJf"/>
                         <outlet property="delegate" destination="iN0-l3-epB" id="woS-PH-CUg"/>
                     </connections>
                 </pickerView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyZ-ik-myO">
+                    <rect key="frame" x="325" y="471" width="50" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="r6O-Hd-t3v"/>
+                        <constraint firstAttribute="width" constant="50" id="tqs-9b-i1e"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="完成"/>
+                    <connections>
+                        <action selector="completeButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="AMd-sM-oa9"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="dyZ-ik-myO" firstAttribute="trailing" secondItem="Irn-ht-gvi" secondAttribute="trailing" id="0Za-Ko-MGe"/>
                 <constraint firstItem="Irn-ht-gvi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="E2U-Z9-Meu"/>
+                <constraint firstItem="Irn-ht-gvi" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:2" id="QTV-fr-DMp"/>
+                <constraint firstItem="dyZ-ik-myO" firstAttribute="bottom" secondItem="Irn-ht-gvi" secondAttribute="bottom" id="WGb-EJ-m6z"/>
                 <constraint firstItem="Irn-ht-gvi" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bL8-l4-UWd"/>
                 <constraint firstItem="Irn-ht-gvi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="xO2-Th-7Nf"/>
             </constraints>
