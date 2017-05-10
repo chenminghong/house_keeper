@@ -124,7 +124,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     OrdersCollectionCell *collectionCell = (OrdersCollectionCell *)cell;
-    [MJRefreshUtil begainRefresh:collectionCell.listTableView];
+    [collectionCell loadDataFromNet];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
