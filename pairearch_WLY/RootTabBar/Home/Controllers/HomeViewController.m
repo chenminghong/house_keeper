@@ -60,7 +60,7 @@
         [self.navigationController setNavigationBarHidden:YES animated:YES];
     }
     self.userNameLabel.text = [LoginModel shareLoginModel].name;
-    self.userNumberLabel.text = [LoginModel shareLoginModel].tel;
+    self.userNumberLabel.text = [LoginModel shareLoginModel].loginacct;
     
     [self.paoma startAnimation];
 }
@@ -124,9 +124,8 @@
  */
 - (void)networkWithUrlStr:(NSString *)urlStr paraDict:(NSDictionary *)paraDict {
     [NetworkHelper POST:urlStr parameters:paraDict progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSInteger status = [responseObject[@"result"] integerValue];
         NSString *msg = responseObject[@"remark"];
-        [MBProgressHUD bwm_showTitle:msg toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
+        [ProgressHUD bwm_showTitle:msg toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
     } failure:^(NSError *error) {
         [MBProgressHUD bwm_showTitle:error.userInfo[ERROR_MSG] toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
     }];
@@ -152,7 +151,7 @@
         SGScanningQRCodeVC *codeVC = [SGScanningQRCodeVC getSgscanningQRCodeVCWithResultBlock:^(NSString *scanResult) {
             //扫描结束回调
             NSLog(@"%@", scanResult);
-            NSDictionary *paraDict = @{@"userName":[LoginModel shareLoginModel].tel.length>0? [LoginModel shareLoginModel].tel:@"", @"orderCode":scanResult, @"lat":@"0.0", @"lng":@"0.0"};
+            NSDictionary *paraDict = @{@"userName":[LoginModel shareLoginModel].loginacct.length>0? [LoginModel shareLoginModel].loginacct:@"", @"orderCode":scanResult, @"lat":@"0.0", @"lng":@"0.0"};
             [self networkWithUrlStr:QRCODE_SCAN_API paraDict:paraDict];
         }];
         NavigationController *naviNC = [[NavigationController alloc] initWithRootViewController:codeVC];

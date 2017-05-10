@@ -32,6 +32,7 @@
 		0F966D2C1EA6FEC100FCAD18 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0F966D181EA6FEC100FCAD18 /* sound.caf */; };
 		0F966D2D1EA6FEC100FCAD18 /* SGAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F966D1B1EA6FEC100FCAD18 /* SGAlertView.m */; };
 		0F966D2E1EA6FEC100FCAD18 /* SGScanningQRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F966D1D1EA6FEC100FCAD18 /* SGScanningQRCodeView.m */; };
+		0FB8494B1EC318E100CFD424 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB8494A1EC318E100CFD424 /* ProgressHUD.m */; };
 		76DA3C9EDAD9C136CDB7CBDB /* libPods-pairearch_WLY.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E253EE02D936D5B70824B760 /* libPods-pairearch_WLY.a */; };
 		B307BF471E7238E5005D7979 /* HomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B307BF461E7238E5005D7979 /* HomePageModel.m */; };
 		B307BF501E7283D8005D7979 /* OrderStatusCOMMON212Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = B307BF4F1E7283D8005D7979 /* OrderStatusCOMMON212Controller.m */; };
@@ -194,6 +195,8 @@
 		0F966D1B1EA6FEC100FCAD18 /* SGAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAlertView.m; sourceTree = "<group>"; };
 		0F966D1C1EA6FEC100FCAD18 /* SGScanningQRCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGScanningQRCodeView.h; sourceTree = "<group>"; };
 		0F966D1D1EA6FEC100FCAD18 /* SGScanningQRCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGScanningQRCodeView.m; sourceTree = "<group>"; };
+		0FB849491EC318E100CFD424 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		0FB8494A1EC318E100CFD424 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		4B0612EA886C1F63FFF37775 /* Pods-pairearch_WLY.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pairearch_WLY.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pairearch_WLY/Pods-pairearch_WLY.debug.xcconfig"; sourceTree = "<group>"; };
 		B307BF451E7238E5005D7979 /* HomePageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageModel.h; sourceTree = "<group>"; };
 		B307BF461E7238E5005D7979 /* HomePageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageModel.m; sourceTree = "<group>"; };
@@ -507,6 +510,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0FB849481EC318E100CFD424 /* ProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				0FB849491EC318E100CFD424 /* ProgressHUD.h */,
+				0FB8494A1EC318E100CFD424 /* ProgressHUD.m */,
+			);
+			path = ProgressHUD;
+			sourceTree = "<group>";
+		};
 		292A3E722AE506B1E6F3136F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -744,6 +756,7 @@
 		B35727631E540D9D003F9B2F /* General */ = {
 			isa = PBXGroup;
 			children = (
+				0FB849481EC318E100CFD424 /* ProgressHUD */,
 				B336CC151E88C010000F3928 /* BaseViewController */,
 				B37CB2291E6E96F900A1463F /* OrderStatusBaseController */,
 				B38410BA1E5D875700F7069F /* Service */,
@@ -1432,6 +1445,7 @@
 				B38410881E5BD4F400F7069F /* OrdersCollectionCell.m in Sources */,
 				0F966D2D1EA6FEC100FCAD18 /* SGAlertView.m in Sources */,
 				B38411311E5E830400F7069F /* CancelLoginTableViewCell.m in Sources */,
+				0FB8494B1EC318E100CFD424 /* ProgressHUD.m in Sources */,
 				B38411321E5E830400F7069F /* FeedbackIdeaTableViewCell.m in Sources */,
 				B3A4A3CD1E70ECE1001C551B /* BackListDetailCell.m in Sources */,
 				B357277A1E5435AE003F9B2F /* MyLocationManager.m in Sources */,

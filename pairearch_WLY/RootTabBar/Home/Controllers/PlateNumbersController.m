@@ -96,10 +96,10 @@
     }
     
     //验证手机号是否正确
-    if (![InputValueCheckUtil checkPhoneNum:self.self.phoneNumberTF.text]) {
-        [MBProgressHUD bwm_showTitle:@"输入的手机号格式有误！" toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL/2.0];
-        return;
-    }
+//    if (![InputValueCheckUtil checkPhoneNum:self.self.phoneNumberTF.text]) {
+//        [MBProgressHUD bwm_showTitle:@"输入的手机号格式有误！" toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL/2.0];
+//        return;
+//    }
     NSDictionary *paraDict = @{@"userName":[LoginModel shareLoginModel].name.length>0? [LoginModel shareLoginModel].name:@"", @"mobile":self.phoneNumberTF.text, @"orderCode":self.orderCode, @"carNumber":self.plateNumberTF.text};
     [self networkWithUrlStr:COMMIT_DRIVERINFO_API paraDict:paraDict];
 }
@@ -114,12 +114,12 @@
     [NetworkHelper POST:urlStr parameters:paraDict progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 //        NSInteger result = [responseObject[@"result"] integerValue];
         NSString *remark = responseObject[@"remark"];
-        MBProgressHUD *hud = [MBProgressHUD bwm_showTitle:remark toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
+        MBProgressHUD *hud = [ProgressHUD bwm_showTitle:remark toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
         [hud setCompletionBlock:^() {
             [self.navigationController popToRootViewControllerAnimated:YES];
         }];
     } failure:^(NSError *error) {
-        [MBProgressHUD bwm_showTitle:error.userInfo[ERROR_MSG] toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
+        [ProgressHUD bwm_showTitle:error.userInfo[ERROR_MSG] toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
     }];
 }
 
