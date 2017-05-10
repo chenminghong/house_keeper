@@ -48,7 +48,18 @@
 
 
 
-/*============================运单中心用户相关=============================*/
+/*============================查询中心用户相关=============================*/
+
+//候补排队列表
+#define WAIT_LIST_API                     @"refreshWaitingBoard.a"          //get
+
+//侧帘&货柜&卡板排队列表
+#define SIDE_LIST_API                     @"findBoradInfoApp.a"             //get
+
+
+
+
+
 
 //订单中心
 #define ORDER_LIST_API                    @"loadAllOrder.a"                 //get

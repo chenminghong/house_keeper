@@ -48,7 +48,8 @@
     if (value == nil) {
         value = @"";
     }
-    [super setValue:value forKey:key];
+    NSString *tempValue = [NSString stringWithFormat:@"%@", value];
+    [super setValue:tempValue forKey:key];
     
 }
 
@@ -57,8 +58,13 @@
     
 }
 
-//验证登录是否成功
+//网络请求
 + (NSURLSessionDataTask *)getDataWithParameters:(NSDictionary *)paramDict endBlock:(void (^)(id model, NSError *error))endBlock {
+    return nil;
+}
+
+//网络请求
++ (NSURLSessionDataTask *)getDataWithUrl:(NSString *)url parameters:(NSDictionary *)paramDict endBlock:(void (^)(id model, NSError *error))endBlock {
     return nil;
 }
 
@@ -272,8 +278,9 @@
 
 //计算文字高度
 + (CGFloat)heightForTextString:(NSString *)tStr width:(CGFloat)tWidth fontSize:(CGFloat)tSize {
+    NSString *tempStr = [NSString stringWithFormat:@"%@", tStr];
     NSDictionary *dict = @{NSFontAttributeName:[UIFont systemFontOfSize:tSize]};
-    CGRect rect = [tStr boundingRectWithSize:CGSizeMake(tWidth, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil];
+    CGRect rect = [tempStr boundingRectWithSize:CGSizeMake(tWidth, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil];
     return rect.size.height;
 }
 
