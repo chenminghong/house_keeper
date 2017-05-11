@@ -40,7 +40,7 @@
     
     self.title = @"个人中心";
     
-    self.titltArr = @[@"异常上报", @"修改密码", @"版本信息", @"关于我们"];
+    self.titltArr = @[@"修改密码", @"版本信息", @"关于我们"];
     self.imageNameArr = @[@"yichang", @"shezhimima", @"banbenxinxi", @"guayuwomen"];
     
     self.tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped];
@@ -95,14 +95,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (0 == indexPath.section) {
         if (indexPath.row == 0) {
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"AbnormalReportController" bundle:[NSBundle mainBundle]];
-            AbnormalReportController *abnormalRVC = [sb instantiateViewControllerWithIdentifier:@"AbnormalReportController"];
-            [self.navigationController pushViewController:abnormalRVC animated:YES];
-        } else if (indexPath.row == 1) {
             AlterPasswordViewController *alterPasswordVC = [[AlterPasswordViewController alloc] init];
             alterPasswordVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:alterPasswordVC animated:YES];
-        } else if (indexPath.row == 2) {
+        } else if (indexPath.row == 1) {
             VersionInfoViewController *versionInfoVC = [[VersionInfoViewController alloc] init];
             versionInfoVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:versionInfoVC animated:YES];
@@ -117,10 +113,10 @@
 }
 
 //移除观察者
-- (void)dealloc
-{
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

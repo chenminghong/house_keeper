@@ -37,7 +37,7 @@
 - (UIImageView *)logoImageView {
     if (!_logoImageView) {
         self.logoImageView = [UIImageView new];
-        self.logoImageView.image = [UIImage imageNamed:@"logonew.png"];
+        self.logoImageView.image = [UIImage imageNamed:@"ic_launcher"];
         self.logoImageView.layer.masksToBounds = YES;
         self.logoImageView.layer.cornerRadius = 10;
         [self.view addSubview:self.logoImageView];
@@ -61,6 +61,7 @@
         self.userNameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         self.userNameTF.borderStyle = UITextBorderStyleBezel;
         self.userNameTF.returnKeyType = UIReturnKeyDone;
+        self.userNameTF.delegate = self;
         NSString *userNumber = [[NSUserDefaults standardUserDefaults] objectForKey:USER_NAME];
         if (userNumber.length) {
             self.userNameTF.text = [NSString stringWithFormat:@"%@", userNumber];
@@ -81,6 +82,7 @@
         self.passwordTF.layer.cornerRadius = self.userNameTF.layer.cornerRadius;
         self.passwordTF.borderStyle = UITextBorderStyleBezel;
         self.passwordTF.returnKeyType = UIReturnKeyDone;
+        self.passwordTF.delegate = self;
     }
     return _passwordTF;
 }
@@ -150,6 +152,14 @@
     if (phoneNumber.length) {
         self.userNameTF.text = phoneNumber;
     }
+}
+
+
+#pragma mark -- UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.view endEditing:YES];
+    return YES;
 }
 
 #pragma mark -- Common Methods

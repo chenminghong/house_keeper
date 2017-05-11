@@ -25,7 +25,7 @@
     self.title = @"版本信息";
     
     //LOGO
-    UIImageView *logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logonew.png"]];
+    UIImageView *logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ic_launcher"]];
     [self.view addSubview:logoImageView];
     __weak typeof(self) weakSelf = self;
     [logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
