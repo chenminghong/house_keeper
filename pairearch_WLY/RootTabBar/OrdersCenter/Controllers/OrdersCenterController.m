@@ -63,6 +63,8 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    [self.collectionView reloadData];
 }
 
 #pragma mark -- ButtonActions
