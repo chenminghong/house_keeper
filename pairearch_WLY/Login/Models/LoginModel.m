@@ -28,6 +28,11 @@
     if (userInfo) {
         [self setValuesForKeysWithDictionary:userInfo];
     }
+    
+        
+    //开启友盟账号登录
+    NSString *name = [NSString stringWithFormat:@"%@", [LoginModel shareLoginModel].name];
+    [MobClick profileSignInWithPUID:name];
 }
 
 - (void)setValue:(id)value forKey:(NSString *)key {

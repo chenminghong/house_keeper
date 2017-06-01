@@ -23,7 +23,9 @@
     [super viewWillAppear:animated];
         
     //页面开始
-    [[BaiduMobStat defaultStat] pageviewStartWithName:NSStringFromClass([self class])];
+//    [[BaiduMobStat defaultStat] pageviewStartWithName:NSStringFromClass([self class])];
+    
+    [MobClick beginLogPageView:NSStringFromClass([self class])];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -32,7 +34,9 @@
     NSLog(@"%@", NSStringFromClass([self class]));
     
     //页面结束
-    [[BaiduMobStat defaultStat] pageviewEndWithName:NSStringFromClass([self class])];
+//    [[BaiduMobStat defaultStat] pageviewEndWithName:NSStringFromClass([self class])];
+    
+    [MobClick endLogPageView:NSStringFromClass([self class])];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -39,7 +39,7 @@
         [MBProgressHUD bwm_showTitle:@"请输入运单号！" toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL / 2.0];
         return;
     }
-    NSDictionary *paraDict = @{@"userName":[LoginModel shareLoginModel].tel.length>0? [LoginModel shareLoginModel].tel:@"", @"orderCode":self.orderCodeTF.text, @"lat":@"0.0", @"lng":@"0.0"};
+    NSDictionary *paraDict = @{@"userName":[LoginModel shareLoginModel].name.length>0? [LoginModel shareLoginModel].name:@"", @"orderCode":self.orderCodeTF.text, @"lat":@"0.0", @"lng":@"0.0"};
     
     [DriverModel getDataWithParameters:paraDict endBlock:^(id model, NSError *error) {
         if (model) {

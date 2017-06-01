@@ -12,8 +12,6 @@
 #import "VersionInfoViewController.h"
 #import "AboutUsViewController.h"
 #import "LoginViewController.h"
-#import "AbnormalReportController.h"
-
 #import "PersonalCenterCell.h"
 #import "CancelLoginCell.h"
 

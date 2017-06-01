@@ -51,7 +51,7 @@
 
 @property (nonatomic, copy) NSString *pwd;  //密码
 
-@property (nonatomic, copy) NSString *tel;  //用户名
+//@property (nonatomic, copy) NSString *tel;  //用户名
 
 @property (nonatomic, copy) NSString *name; //门岗名称
 

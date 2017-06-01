@@ -51,8 +51,6 @@
 		B357277A1E5435AE003F9B2F /* MyLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B35727791E5435AE003F9B2F /* MyLocationManager.m */; };
 		B35727811E545865003F9B2F /* NetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B35727801E545865003F9B2F /* NetworkHelper.m */; };
 		B35D79361E666AB800ED730B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B35D79351E666AB800ED730B /* MapKit.framework */; };
-		B37BA6C91E80C443001A74B8 /* AbnormalReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = B37BA6C81E80C443001A74B8 /* AbnormalReportController.m */; };
-		B37BA6CB1E80D300001A74B8 /* AbnormalReportController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B37BA6CA1E80D300001A74B8 /* AbnormalReportController.storyboard */; };
 		B37BA6CF1E80FA29001A74B8 /* AbnormalReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B37BA6CD1E80FA29001A74B8 /* AbnormalReportCell.m */; };
 		B37BA6D01E80FA29001A74B8 /* AbnormalReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B37BA6CE1E80FA29001A74B8 /* AbnormalReportCell.xib */; };
 		B37BA6D51E8127A9001A74B8 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B37BA6D21E8127A9001A74B8 /* LxGridViewFlowLayout.m */; };
@@ -166,9 +164,6 @@
 		B35727801E545865003F9B2F /* NetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkHelper.m; sourceTree = "<group>"; };
 		B357278E1E555515003F9B2F /* BaiduTraceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduTraceSDK.framework; sourceTree = "<group>"; };
 		B35D79351E666AB800ED730B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		B37BA6C71E80C443001A74B8 /* AbnormalReportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalReportController.h; sourceTree = "<group>"; };
-		B37BA6C81E80C443001A74B8 /* AbnormalReportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalReportController.m; sourceTree = "<group>"; };
-		B37BA6CA1E80D300001A74B8 /* AbnormalReportController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AbnormalReportController.storyboard; sourceTree = "<group>"; };
 		B37BA6CC1E80FA29001A74B8 /* AbnormalReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalReportCell.h; sourceTree = "<group>"; };
 		B37BA6CD1E80FA29001A74B8 /* AbnormalReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalReportCell.m; sourceTree = "<group>"; };
 		B37BA6CE1E80FA29001A74B8 /* AbnormalReportCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalReportCell.xib; sourceTree = "<group>"; };
@@ -497,9 +492,6 @@
 				B38411371E5E832C00F7069F /* AlterPasswordViewController.m */,
 				B38411381E5E832C00F7069F /* VersionInfoViewController.h */,
 				B38411391E5E832C00F7069F /* VersionInfoViewController.m */,
-				B37BA6C71E80C443001A74B8 /* AbnormalReportController.h */,
-				B37BA6C81E80C443001A74B8 /* AbnormalReportController.m */,
-				B37BA6CA1E80D300001A74B8 /* AbnormalReportController.storyboard */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -882,7 +874,6 @@
 				0F966D241EA6FEC100FCAD18 /* QRCodebottomRight@2x.png in Resources */,
 				0F966D231EA6FEC100FCAD18 /* QRCodebottomLeft@3x.png in Resources */,
 				B357276E1E543268003F9B2F /* OrdersCenterController.storyboard in Resources */,
-				B37BA6CB1E80D300001A74B8 /* AbnormalReportController.storyboard in Resources */,
 				0F966D281EA6FEC100FCAD18 /* QRCodeTopLeft@2x.png in Resources */,
 				0F966D261EA6FEC100FCAD18 /* QRCodeLine@2x.png in Resources */,
 				B32228E91E52A2C300ED50ED /* LaunchScreen.storyboard in Resources */,
@@ -957,7 +948,6 @@
 				B3CC54BF1E6020090072EA47 /* AutoHeight.m in Sources */,
 				B384110F1E5D875700F7069F /* FileDirPathUtil.m in Sources */,
 				B35727811E545865003F9B2F /* NetworkHelper.m in Sources */,
-				B37BA6C91E80C443001A74B8 /* AbnormalReportController.m in Sources */,
 				B38411401E5E89C700F7069F /* PersonalCenterCell.m in Sources */,
 				B384111B1E5D886000F7069F /* LoginViewController.m in Sources */,
 				0F63E2731EC1714B00F4E12A /* AdaptiveCodeController.m in Sources */,
@@ -1065,7 +1055,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Paireach supply chain management Co., Ltd. (CB93LUJYU2)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = EATR485WEG;
+				DEVELOPMENT_TEAM = CB93LUJYU2;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1117,7 +1107,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Paireach supply chain management Co., Ltd. (CB93LUJYU2)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = EATR485WEG;
+				DEVELOPMENT_TEAM = CB93LUJYU2;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
