@@ -15,7 +15,9 @@
 
 //加载cell
 + (instancetype)getCellWithCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath pushBlock:(PushActionBlock)pushBlock {
-    OrdersCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OrdersCollectionCell" forIndexPath:indexPath];
+    NSString *reuseIdentifier = [NSString stringWithFormat:@"%ld", indexPath.item];
+    [collectionView registerClass:[OrdersCollectionCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    OrdersCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.indexPath = indexPath;
     cell.pushBlock = pushBlock;
     return cell;
