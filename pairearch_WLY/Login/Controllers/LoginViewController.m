@@ -202,6 +202,9 @@
         if (completeBlock) {
             completeBlock();
         }
+        
+        //友盟账号退出登录
+        [MobClick profileSignOff];
     }];
 }
 
@@ -263,6 +266,10 @@
             [hud setCompletionBlock:^(){
                 [self hideLoginPage];
             }];
+            
+            //友盟统计账号登录
+            NSString *name = [NSString stringWithFormat:@"%@", [LoginModel shareLoginModel].name];
+            [MobClick profileSignInWithPUID:name];
             
         } else {
             NSString *message = error.userInfo[ERROR_MSG];
