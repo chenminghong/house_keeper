@@ -8,7 +8,7 @@
 
 #import "PlateNumbersController.h"
 
-#import "CommonPickerView.h"
+#import "BidPickerView.h"
 #import "DriverModel.h"
 
 @interface PlateNumbersController ()
@@ -71,9 +71,9 @@
     [self.view endEditing:YES];
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"province_data" ofType:@"plist"];
     NSArray *provincesArr = [[NSArray alloc] initWithContentsOfFile:plistPath];
-    [CommonPickerView showPickerViewInView:self.view titleList:provincesArr pickBlock:^(NSString *reasonTitle) {
+    [BidPickerView showTimeSelectViewWithTitle:@"请选择省份简称" dataArr:provincesArr selectBlock:^(id model) {
         [self.plateNumberTF becomeFirstResponder];
-        self.plateNumberTF.text = reasonTitle;
+        self.plateNumberTF.text = model;
     }];
 }
 

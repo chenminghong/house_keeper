@@ -15,6 +15,9 @@
 		0F63E2841EC1ADE900F4E12A /* CommonPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F63E2821EC1ADE900F4E12A /* CommonPickerView.xib */; };
 		0F63E28D1EC1B47600F4E12A /* province_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F63E28C1EC1B47600F4E12A /* province_data.plist */; };
 		0F63E2901EC1CE1100F4E12A /* DriverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F63E28F1EC1CE1100F4E12A /* DriverModel.m */; };
+		0F728B421F03AF0500A61AAB /* BidPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F728B3E1F03AF0500A61AAB /* BidPickerView.m */; };
+		0F728B431F03AF0500A61AAB /* BidSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F728B401F03AF0500A61AAB /* BidSelectView.m */; };
+		0F728B441F03AF0500A61AAB /* BidSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F728B411F03AF0500A61AAB /* BidSelectView.xib */; };
 		0F966D1E1EA6FEC100FCAD18 /* CIImage+SGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F966D041EA6FEC100FCAD18 /* CIImage+SGExtension.m */; };
 		0F966D1F1EA6FEC100FCAD18 /* ScanSuccessJumpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F966D071EA6FEC100FCAD18 /* ScanSuccessJumpVC.m */; };
 		0F966D201EA6FEC100FCAD18 /* SGGenerateQRCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F966D091EA6FEC100FCAD18 /* SGGenerateQRCodeVC.m */; };
@@ -107,6 +110,11 @@
 		0F63E28C1EC1B47600F4E12A /* province_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = province_data.plist; sourceTree = "<group>"; };
 		0F63E28E1EC1CE1100F4E12A /* DriverModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverModel.h; sourceTree = "<group>"; };
 		0F63E28F1EC1CE1100F4E12A /* DriverModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverModel.m; sourceTree = "<group>"; };
+		0F728B3D1F03AF0500A61AAB /* BidPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BidPickerView.h; sourceTree = "<group>"; };
+		0F728B3E1F03AF0500A61AAB /* BidPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BidPickerView.m; sourceTree = "<group>"; };
+		0F728B3F1F03AF0500A61AAB /* BidSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BidSelectView.h; sourceTree = "<group>"; };
+		0F728B401F03AF0500A61AAB /* BidSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BidSelectView.m; sourceTree = "<group>"; };
+		0F728B411F03AF0500A61AAB /* BidSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BidSelectView.xib; sourceTree = "<group>"; };
 		0F966D031EA6FEC100FCAD18 /* CIImage+SGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CIImage+SGExtension.h"; sourceTree = "<group>"; };
 		0F966D041EA6FEC100FCAD18 /* CIImage+SGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CIImage+SGExtension.m"; sourceTree = "<group>"; };
 		0F966D061EA6FEC100FCAD18 /* ScanSuccessJumpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanSuccessJumpVC.h; sourceTree = "<group>"; };
@@ -783,6 +791,11 @@
 				0F63E2801EC1ADE900F4E12A /* CommonPickerView.h */,
 				0F63E2811EC1ADE900F4E12A /* CommonPickerView.m */,
 				0F63E2821EC1ADE900F4E12A /* CommonPickerView.xib */,
+				0F728B3D1F03AF0500A61AAB /* BidPickerView.h */,
+				0F728B3E1F03AF0500A61AAB /* BidPickerView.m */,
+				0F728B3F1F03AF0500A61AAB /* BidSelectView.h */,
+				0F728B401F03AF0500A61AAB /* BidSelectView.m */,
+				0F728B411F03AF0500A61AAB /* BidSelectView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -873,6 +886,7 @@
 				0F63E2741EC1714B00F4E12A /* AdaptiveCodeController.xib in Resources */,
 				0F966D241EA6FEC100FCAD18 /* QRCodebottomRight@2x.png in Resources */,
 				0F966D231EA6FEC100FCAD18 /* QRCodebottomLeft@3x.png in Resources */,
+				0F728B441F03AF0500A61AAB /* BidSelectView.xib in Resources */,
 				B357276E1E543268003F9B2F /* OrdersCenterController.storyboard in Resources */,
 				0F966D281EA6FEC100FCAD18 /* QRCodeTopLeft@2x.png in Resources */,
 				0F966D261EA6FEC100FCAD18 /* QRCodeLine@2x.png in Resources */,
@@ -971,6 +985,7 @@
 				B336CC181E88C026000F3928 /* BaseViewController.m in Sources */,
 				B384108C1E5BD9CA00F7069F /* ListTableCell.m in Sources */,
 				B384110E1E5D875700F7069F /* CustomButton.m in Sources */,
+				0F728B431F03AF0500A61AAB /* BidSelectView.m in Sources */,
 				B37BA6D61E8127A9001A74B8 /* TZTestCell.m in Sources */,
 				B38411111E5D875700F7069F /* InputValueCheckUtil.m in Sources */,
 				B3CC54C61E6037D60072EA47 /* WQLPaoMaView.m in Sources */,
@@ -990,6 +1005,7 @@
 				B3D3B2A21E66EA550033EF84 /* HomeViewController.m in Sources */,
 				B37CB1F71E6958DB00A1463F /* OrderStatusManager.m in Sources */,
 				B38410881E5BD4F400F7069F /* OrdersCollectionCell.m in Sources */,
+				0F728B421F03AF0500A61AAB /* BidPickerView.m in Sources */,
 				0F966D2D1EA6FEC100FCAD18 /* SGAlertView.m in Sources */,
 				B38411311E5E830400F7069F /* CancelLoginTableViewCell.m in Sources */,
 				0FB8494B1EC318E100CFD424 /* ProgressHUD.m in Sources */,
