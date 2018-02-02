@@ -1,52 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ListTableCell" rowHeight="47" id="KGk-i7-Jjw" customClass="ListTableCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
+            <rect key="frame" x="0.0" y="0.0" width="508" height="47"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
+                <rect key="frame" x="0.0" y="0.0" width="508" height="46.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车牌号：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mgz-9H-UPo">
-                        <rect key="frame" x="10" y="10" width="75" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="沪A12345" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mgz-9H-UPo">
+                        <rect key="frame" x="10" y="0.0" width="95.5" height="46.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:12" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Th3-hT-trI">
+                        <rect key="frame" x="105.5" y="0.0" width="273.5" height="46.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSf-v4-kd4">
+                        <rect key="frame" x="379" y="6" width="119" height="35"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="75" id="1mQ-hG-Fk6"/>
-                            <constraint firstAttribute="height" constant="20" id="Tbh-xy-tf8"/>
+                            <constraint firstAttribute="height" constant="35" id="xo8-ZF-wk9"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="豫S00000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Th3-hT-trI">
-                        <rect key="frame" x="85" y="10" width="215" height="20"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <state key="normal" title="立即入厂">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Mgz-9H-UPo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="59K-xu-uOd"/>
-                    <constraint firstItem="Th3-hT-trI" firstAttribute="height" secondItem="Mgz-9H-UPo" secondAttribute="height" id="Faw-HY-k8e"/>
-                    <constraint firstItem="Th3-hT-trI" firstAttribute="centerY" secondItem="Mgz-9H-UPo" secondAttribute="centerY" id="G30-Rr-8Ch"/>
-                    <constraint firstItem="Th3-hT-trI" firstAttribute="leading" secondItem="Mgz-9H-UPo" secondAttribute="trailing" id="Uks-dY-Afs"/>
-                    <constraint firstAttribute="trailing" secondItem="Th3-hT-trI" secondAttribute="trailing" constant="20" id="oKA-xu-RvC"/>
-                    <constraint firstItem="Mgz-9H-UPo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="xQz-Dy-gw1"/>
+                    <constraint firstItem="Mgz-9H-UPo" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="60:320" id="1eM-60-fH6"/>
+                    <constraint firstItem="Mgz-9H-UPo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4Jj-z7-Ov1"/>
+                    <constraint firstAttribute="trailing" secondItem="tSf-v4-kd4" secondAttribute="trailing" constant="10" id="C2h-Yg-w0u"/>
+                    <constraint firstItem="tSf-v4-kd4" firstAttribute="leading" secondItem="Th3-hT-trI" secondAttribute="trailing" id="P9L-cY-uxl"/>
+                    <constraint firstItem="Mgz-9H-UPo" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="Wh4-sL-Jhb"/>
+                    <constraint firstAttribute="bottom" secondItem="Th3-hT-trI" secondAttribute="bottom" id="bfL-7D-hZO"/>
+                    <constraint firstItem="Mgz-9H-UPo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="oMf-5F-gKQ"/>
+                    <constraint firstItem="tSf-v4-kd4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rAF-k1-dU3"/>
+                    <constraint firstItem="Th3-hT-trI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="sqm-SW-0h2"/>
+                    <constraint firstItem="Th3-hT-trI" firstAttribute="leading" secondItem="Mgz-9H-UPo" secondAttribute="trailing" id="wDo-HJ-Yrd"/>
+                    <constraint firstItem="tSf-v4-kd4" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="75:320" id="yTX-cJ-yIS"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="plateNumberLabel" destination="Th3-hT-trI" id="edb-5c-pKq"/>
+                <outlet property="carNumberLabel" destination="Mgz-9H-UPo" id="nxm-NA-nUX"/>
+                <outlet property="enterFacBtn" destination="tSf-v4-kd4" id="Wjl-8x-9uP"/>
+                <outlet property="timeLabel" destination="Th3-hT-trI" id="Vps-rp-9Ri"/>
             </connections>
-            <point key="canvasLocation" x="32" y="-29.5"/>
+            <point key="canvasLocation" x="126" y="-29.5"/>
         </tableViewCell>
     </objects>
 </document>

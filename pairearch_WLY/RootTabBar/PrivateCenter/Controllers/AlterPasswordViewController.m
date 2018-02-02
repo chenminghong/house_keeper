@@ -41,7 +41,7 @@
     
     //新密码
     self.passwordTF = [[UITextField alloc] initWithFrame:CGRectMake(self.originalPasswordTF.frame.origin.x, firstLine.frame.origin.y + firstLine.frame.size.height + 5, self.originalPasswordTF.frame.size.width, self.originalPasswordTF.frame.size.height)];
-    self.passwordTF.placeholder = @"新密码";
+    self.passwordTF.placeholder = @"*新密码";
     self.passwordTF.secureTextEntry = YES;
     self.passwordTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.view addSubview:self.passwordTF];
@@ -53,7 +53,7 @@
     
     //再次输入新密码
     self.confirmNewPasswordTF = [[UITextField alloc] initWithFrame:CGRectMake(self.passwordTF.frame.origin.x, secondLine.frame.origin.y + secondLine.frame.size.height + 10, self.passwordTF.frame.size.width, self.passwordTF.frame.size.height)];
-    self.confirmNewPasswordTF.placeholder = @"再次输入新密码";
+    self.confirmNewPasswordTF.placeholder = @"*确认新密码";
     self.confirmNewPasswordTF.secureTextEntry = YES;
     self.confirmNewPasswordTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.view addSubview:self.confirmNewPasswordTF];
@@ -66,23 +66,26 @@
     //确定button
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [button setBackgroundImage:[UIImage imageNamed:@"btn_big_nor.png"] forState:UIControlStateNormal];
-    button.backgroundColor = MAIN_THEME_COLOR;
+    button.backgroundColor = MAIN_BUTTON_BGCOLOR;
     [button  setTitle:@"确定" forState:UIControlStateNormal];
     [button setTintColor:[UIColor whiteColor]];
     [button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     __weak typeof(self) weakSelf = self;
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(thirdLine.mas_bottom).with.offset(20);
-        make.centerX.equalTo(weakSelf.view);
-        make.size.mas_equalTo(CGSizeMake(weakSelf.view.frame.size.width / 2, 40));
+        make.top.equalTo(thirdLine.mas_bottom).with.offset(50);
+        make.left.mas_equalTo(weakSelf.view.mas_left).with.offset(10);
+        make.right.mas_equalTo(weakSelf.view.mas_right).with.offset(-10);
+        make.height.mas_equalTo(40);
     }];
+    button.layer.cornerRadius = 5.0;
 }
 
 //确定button
 - (void)buttonAction {
+    [self.view endEditing:YES];
     //判断原密码、新密码和确认密码是否为空
-    if (0 == self.originalPasswordTF.text.length || 0 == self.passwordTF.text.length || 0 == self.confirmNewPasswordTF.text.length) {
+    if (0 == self.passwordTF.text.length || 0 == self.confirmNewPasswordTF.text.length) {
         //提醒用户输入信息不能为空
         [MBProgressHUD bwm_showTitle:@"输入的密码不能为空" toView:self.view hideAfter:2.0];
         return;
@@ -102,15 +105,15 @@
                 self.confirmNewPasswordTF.text = @"";
                 return;
             } else {
-                //如果原密码输入错误，提醒用户
-                NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ACCOUNT];
-                if (![self.originalPasswordTF.text isEqualToString:password]) {
-                    [MBProgressHUD bwm_showTitle:@"原始密码输入错误，请重新输入！" toView:self.view hideAfter:2.0];
-                } else {
-                    //请求修改密码
-                    [self PostRequestForAlterPasswordWithOldPwd:self.originalPasswordTF.text AndPwd:self.passwordTF.text];
-                    
-                }
+                //请求修改密码
+                [self PostRequestForAlterPasswordWithOldPwd:self.originalPasswordTF.text AndPwd:self.passwordTF.text];
+//                //如果原密码输入错误，提醒用户
+//                NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ACCOUNT];
+//                if (![self.originalPasswordTF.text isEqualToString:password]) {
+//                    [MBProgressHUD bwm_showTitle:@"原始密码输入错误，请重新输入！" toView:self.view hideAfter:2.0];
+//                } else {
+//
+//                }
             }
         }
     }

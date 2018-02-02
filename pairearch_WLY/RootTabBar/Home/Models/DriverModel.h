@@ -14,4 +14,6 @@
 
 @property (nonatomic, copy) NSString *truckNumber;  //车牌号
 
++ (NSURLSessionDataTask *)loadDataWithParameters:(NSDictionary *)paramDict endBlock:(void (^)(id, NSError *))endBlock;
+
 @end

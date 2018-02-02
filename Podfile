@@ -1,4 +1,4 @@
-platform :ios, '7.0'
+platform :ios, '8.0'
 inhibit_all_warnings!
 source 'https://github.com/CocoaPods/Specs.git'
 
@@ -16,7 +16,7 @@ pod 'MBProgressHUD', '~> 0.9.2'
 pod 'Masonry', '~> 1.0.2'
 pod 'TZImagePickerController', '~> 1.7.8'
 pod 'SAMKeychain', '~> 1.5.2'
-
+pod 'HUPhotoBrowser', '~> 1.2.4'
 
 
 
@@ -27,8 +27,6 @@ pod 'FastImageCache'
 pod 'FMDB'
 pod 'SSKeychain'
 =end
-
-
 
 end
 

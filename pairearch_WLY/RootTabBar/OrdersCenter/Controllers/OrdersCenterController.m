@@ -17,9 +17,8 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (weak, nonatomic) IBOutlet UIView *selectView;
-@property (nonatomic, strong) UIButton *selectedBtn;  //已经选中的Button
 
-@property (nonatomic, strong) UIView *markView; //按钮标记view
+@property (nonatomic, strong) UIButton *selectedBtn;  //已经选中的Button
 
 @property (nonatomic, strong) OrdersCollectionCell *currentCell;  //当前显示的cell
 
@@ -29,27 +28,19 @@
 
 #pragma mark -- LazyLoding
 
-- (UIView *)markView {
-    if (!_markView) {
-        self.markView = [[UIView alloc] initWithFrame:CGRectMake(0.0, CGRectGetMaxY(self.selectView.bounds) - 2, kScreenWidth / 4.0, 2)];
-        self.markView.backgroundColor = MAIN_THEME_COLOR;
-    }
-    return _markView;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = UIColorFromRGB(0xCBC9C7);
+    self.view.backgroundColor = UIColorFromRGB(0xfdf6de);
 
     self.collectionView.pagingEnabled = YES;
-    [self.selectView addSubview:self.markView];
-        
-    for (NSInteger i = 0; i < 4; i++) {
+    self.collectionView.backgroundColor = [UIColor clearColor];
+    
+    for (NSInteger i = 0; i < 2; i++) {
         UIButton *btn = (UIButton *)[self.selectView viewWithTag:(100 + i)];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn setTitleColor:MAIN_THEME_COLOR forState:UIControlStateSelected];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btn setTitleColor:UIColorFromRGB(0xdc3259) forState:UIControlStateSelected];
         if (i == 0) {
             btn.selected = YES;
             self.selectedBtn = btn;
@@ -62,7 +53,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     [self.collectionView reloadData];
 }
@@ -74,23 +65,23 @@
         sender.selected = YES;
         self.selectedBtn = sender;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(sender.tag - 100) inSection:0];
-        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     }
-    [self resetMarkViewPositionWithIndex:sender.tag - 100];
 }
 
 #pragma mark -- CommoMethods
-
+/*
 - (void)resetMarkViewPositionWithIndex:(NSInteger)index {
     [UIView animateWithDuration:0.2 animations:^{
         self.markView.transform = CGAffineTransformMakeTranslation(CGRectGetWidth(self.selectView.bounds) * index / 4.0, 0.0);
     }];
 }
+ */
 
 #pragma mark -- DelegateMethods
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64 - 47);
+    return self.collectionView.bounds.size;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -98,26 +89,25 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 4;
+    return 2;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     OrdersCollectionCell *cell = [OrdersCollectionCell getCellWithCollectionView:collectionView indexPath:indexPath pushBlock:^(NSArray *selectModelArr, NSIndexPath *indexPath) {
         
     }];
-    cell.indexPath = indexPath;
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    OrdersCollectionCell *collectionCell = (OrdersCollectionCell *)cell;
-    [collectionCell loadDataFromNet];
+//    OrdersCollectionCell *collectionCell = (OrdersCollectionCell *)cell;
+//    [collectionCell loadDataFromNet];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (scrollView == self.collectionView) {
         NSInteger index = (NSInteger)(scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width);
-        [self resetMarkViewPositionWithIndex:index];
+//        [self resetMarkViewPositionWithIndex:index];
         UIButton *btn = (UIButton *)[self.selectView viewWithTag:(100 + index)];
         if (index + 100 == btn.tag) {
             [self selectButtonAction:btn];

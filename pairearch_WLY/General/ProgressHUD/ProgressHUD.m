@@ -16,7 +16,10 @@
         return [super bwm_showTitle:title toView:view hideAfter:afterSecond];
     }
     title = @"系统错误";
-    return [super bwm_showTitle:title toView:view hideAfter:afterSecond];
+    MBProgressHUD *hud = [super bwm_showTitle:title toView:view hideAfter:afterSecond];
+    hud.minSize = CGSizeMake(kScreenWidth - 80, kScreenWidth - 80);
+    hud.backgroundColor = [UIColor whiteColor];
+    return hud;
 }
 
 /*

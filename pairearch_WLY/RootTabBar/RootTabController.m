@@ -29,25 +29,28 @@
     UIStoryboard *homeSB = [UIStoryboard storyboardWithName:@"HomeViewController" bundle:nil];
     HomeViewController *homeVC = [homeSB instantiateViewControllerWithIdentifier:@"HomeViewController"];
     NavigationController *homeNC = [self addNavigationItemForViewController:homeVC];
+    homeNC.title = @"首页";
     
     UIStoryboard *orderSB = [UIStoryboard storyboardWithName:@"OrdersCenterController" bundle:nil];
     OrdersCenterController *orderVC = [orderSB instantiateViewControllerWithIdentifier:@"OrdersCenterController"];
     NavigationController *orderNC = [self addNavigationItemForViewController:orderVC];
+    orderNC.title = @"排队中心";
     
     PersonalCenterViewController *privateVC = [PersonalCenterViewController new];
     NavigationController *privateNC = [self addNavigationItemForViewController:privateVC];
+    privateNC.title = @"个人中心";
     
     self.tabBar.translucent = NO;
-    self.tabBar.barTintColor = TOP_BOTTOMBAR_COLOR;
+    self.tabBar.barTintColor = BOTTOM_ITEMBAR_COLOR;
     self.viewControllers = @[homeNC, orderNC, privateNC];
     
-    NSArray *titles = @[@"首页", @"查询中心", @"个人中心"];
-    NSArray *images = @[@"zhuye", @"yundanzhongxin", @"gerenzhongxin"];
+    NSArray *titles = @[@"首页", @"排队中心", @"个人中心"];
+    NSArray *images = @[@"首页", @"货车", @"个人中心"];
     [self.tabBar.items enumerateObjectsUsingBlock:^(UITabBarItem *item, NSUInteger idx, BOOL *stop) {
         [item setTitle:titles[idx]];
         [item setImage:[[UIImage imageNamed:images[idx]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item setSelectedImage:[[UIImage imageNamed:[images[idx] stringByAppendingString:@"-sel"]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]} forState:UIControlStateNormal];
         [item setTitleTextAttributes:@{NSForegroundColorAttributeName:MAIN_THEME_COLOR} forState:UIControlStateSelected];
     }];
 }

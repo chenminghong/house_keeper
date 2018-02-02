@@ -11,6 +11,7 @@
 #import "LoginTextField.h"
 #import "AppDelegate.h"
 #import "LoginModel.h"
+#import "InputValueCheckUtil.h"
 #import "LoginModel.h"
 
 
@@ -37,7 +38,7 @@
 - (UIImageView *)logoImageView {
     if (!_logoImageView) {
         self.logoImageView = [UIImageView new];
-        self.logoImageView.image = [UIImage imageNamed:@"ic_launcher"];
+        self.logoImageView.image = [UIImage imageNamed:@"logo_img"];
         self.logoImageView.layer.masksToBounds = YES;
         self.logoImageView.layer.cornerRadius = 10;
         [self.view addSubview:self.logoImageView];
@@ -56,11 +57,11 @@
         self.userNameTF = [[LoginTextField alloc] initWithFrame:CGRectMake(50, 160 * kHeightProportion, CGRectGetWidth(self.view.bounds) - 100, 40)];
         self.userNameTF.iconName = @"usernumber";
         self.userNameTF.backgroundColor = [UIColor whiteColor];
-        self.userNameTF.placeholder = @"账号";
-        self.userNameTF.keyboardType = UIKeyboardTypeASCIICapable;
+        self.userNameTF.placeholder = @"手机号";
         self.userNameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         self.userNameTF.borderStyle = UITextBorderStyleBezel;
         self.userNameTF.returnKeyType = UIReturnKeyDone;
+        self.userNameTF.autocapitalizationType = UITextAutocapitalizationTypeNone;
         self.userNameTF.delegate = self;
         NSString *userNumber = [[NSUserDefaults standardUserDefaults] objectForKey:USER_NAME];
         if (userNumber.length) {
@@ -101,6 +102,7 @@
             make.right.equalTo(self.userNameTF.mas_right);
             make.height.mas_equalTo(40);
         }];
+        self.loginBtn.layer.cornerRadius = 5.0;
     }
     return _loginBtn;
 }
@@ -113,7 +115,7 @@
         self.bottomLabel.font = [UIFont systemFontOfSize:13.0];
         self.bottomLabel.textColor = UIColorFromRGB(0x666666);
 //        self.bottomLabel.backgroundColor = UIColorFromRGB(0xF1D6D8);
-        self.bottomLabel.backgroundColor = TOP_BOTTOMBAR_COLOR;
+        self.bottomLabel.backgroundColor = TOP_NAVIBAR_COLOR;
         [self.bottomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view);
             make.bottom.equalTo(self.view);
@@ -130,7 +132,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"欢迎登录排队管家";
+    self.title = @"欢迎登录我来运";
     
     //登录界面背景色
     self.view.backgroundColor = [UIColor whiteColor];
@@ -153,7 +155,6 @@
         self.userNameTF.text = phoneNumber;
     }
 }
-
 
 #pragma mark -- UITextFieldDelegate
 
@@ -189,7 +190,7 @@
 }
 
 //模态出登录界面
-+ (void)showSelfInController:(UIViewController *)controller completeBlock:(void (^)())completeBlock {
++ (void)showSelfInController:(UIViewController *)controller completeBlock:(void (^)(void))completeBlock {
     LoginViewController *loginVC = [LoginViewController new];
     NavigationController *navigationVC = [[NavigationController alloc] initWithRootViewController:loginVC];
     //显示第一个tabBar
@@ -199,12 +200,13 @@
         [defaults setBool:NO forKey:LOGIN_STATE];
         [defaults removeObjectForKey:USER_ACCOUNT];
         weakController.tabBarController.selectedIndex = 0;
-        if (completeBlock) {
-            completeBlock();
-        }
         
         //友盟账号退出登录
         [MobClick profileSignOff];
+        
+        if (completeBlock) {
+            completeBlock();
+        }
     }];
 }
 
@@ -224,7 +226,7 @@
     
     [self.view endEditing:YES];
     
-    if ([NetworkHelper getNetworkStatus] == NetworkStatusNone) {
+    if ([NetworkHelper localizedNetworkReachabilityStatus] == NetworkReachabilityStatusNotReachable) {
         [MBProgressHUD bwm_showTitle:@"网络连接错误，请检查网络！" toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
     }
     
@@ -233,49 +235,26 @@
         return;
     }
     
-    //验证手机号是否正确
-//    if (![InputValueCheckUtil checkPhoneNum:self.userNameTF.text]) {
-//        [MBProgressHUD bwm_showTitle:@"输入的手机号格式有误！" toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
-//        return;
-//    }
-    
-    MBProgressHUD *hud = [MBProgressHUD bwm_showHUDAddedTo:self.view title:@"登录中..."];
-    NSDictionary *paramDict = @{@"workerName":[NSString stringWithFormat:@"%@", self.userNameTF.text],
-                                @"workerPwd":[NSString stringWithFormat:@"%@", [BaseModel md5HexDigest:self.passwordTF.text]],
-                                @"deviceRoot":@"0",
-                                @"sdkVersion":[[UIDevice currentDevice] systemVersion],
-                                @"androidID":@"",
-                                @"macAddress":[BaseModel getMacAddress],
-                                @"manufacturer":@"Apple",
-                                @"model":[BaseModel iphoneType],
-                                @"is4G":@"0",
-                                @"wifiEnabled":@"0",
-                                @"networkOperatorName":@"0",
-                                @"imei":@"0",
-                                @"imsi":@"0",
-                                @"phoneType":@"0",
-                                @"simOperatorName":@"0",
-                                @"phoneStatus":@"0",
-                                @"simCardNo":@"0",
+    NSDictionary *paramDict = @{@"account":[NSString stringWithFormat:@"%@", self.userNameTF.text],
+                                @"password":[NSString stringWithFormat:@"%@", [BaseModel md5HexDigest:self.passwordTF.text]],
+                                OPERATION_KEY:USER_LOGIN_API,
                                 };
-    
-    [LoginModel getDataWithParameters:paramDict endBlock:^(LoginModel *model, NSError *error) {
-        [hud hide:YES];
+    NSLog(@"LoginParam:%@", paramDict);
+    [LoginModel getDataWithUrl:PAIREACH_NETWORK_URL parameters:paramDict hudTarget:self.view endBlock:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (!error) {
-            MBProgressHUD *hud = [MBProgressHUD bwm_showTitle:@"登录成功!" toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL / 2.0];
-            [hud setCompletionBlock:^(){
+            MBProgressHUD *hud2 = [MBProgressHUD bwm_showTitle:@"登录成功!" toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL / 2.0];
+            [hud2 setCompletionBlock:^(){
                 [self hideLoginPage];
             }];
             
             //友盟统计账号登录
-            NSString *name = [NSString stringWithFormat:@"%@", [LoginModel shareLoginModel].name];
+            NSString *name = [NSString stringWithFormat:@"%@_%@", [LoginModel shareLoginModel].fullName, [LoginModel shareLoginModel].phone];
             [MobClick profileSignInWithPUID:name];
-            
         } else {
-            NSString *message = error.userInfo[ERROR_MSG];
-            [MBProgressHUD bwm_showTitle:message toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
+            [MBProgressHUD bwm_showTitle:error.userInfo[ERROR_MSG] toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
         }
     }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

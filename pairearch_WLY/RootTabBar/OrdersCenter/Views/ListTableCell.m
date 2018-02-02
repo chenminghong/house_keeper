@@ -14,9 +14,7 @@
 
 - (void)setFrame:(CGRect)frame {
     frame.origin.x += 10;
-    frame.origin.y += 10;
     frame.size.width -= 20;
-    frame.size.height -= 20;
     [super setFrame:frame];
 }
 
@@ -30,12 +28,13 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     //设置阴影
-    cell.layer.masksToBounds = NO;
-    cell.layer.shadowColor = [UIColor blackColor].CGColor;
-    cell.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    cell.layer.shadowOpacity = 0.5f;
-    cell.layer.shouldRasterize = YES;
-    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+//    cell.layer.masksToBounds = NO;
+//    cell.layer.shadowColor = [UIColor blackColor].CGColor;
+//    cell.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+//    cell.layer.shadowOpacity = 0.5f;
+//    cell.layer.shouldRasterize = YES;
+//    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+//    cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 
@@ -43,15 +42,13 @@
     [super awakeFromNib];
     // Initialization code
     
-    [self.layer setMasksToBounds:YES];
-    self.layer.cornerRadius = 5;
+    self.enterFacBtn.backgroundColor = MAIN_BUTTON_BGCOLOR;
+    self.enterFacBtn.layer.cornerRadius = 5.0;
 }
 
 - (void)setOrderModel:(OrderListModel *)orderModel {
     _orderModel = orderModel;
-    self.plateNumberLabel.text = [NSString stringWithFormat:@"%@", orderModel.plateNumber];
 }
-
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

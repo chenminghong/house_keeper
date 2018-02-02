@@ -23,11 +23,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"自提运单";
+    self.view.backgroundColor = MAIN_BACKGROUND_COLOR;
     
+    self.nextButton.backgroundColor = MAIN_BUTTON_BGCOLOR;
+    self.nextButton.layer.cornerRadius = 5;
 }
 
 #pragma mark -- 按钮点击事件
-
 
 /**
  下一步按钮点击事件
@@ -39,26 +41,9 @@
         [MBProgressHUD bwm_showTitle:@"请输入运单号！" toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL / 2.0];
         return;
     }
-    NSDictionary *paraDict = @{@"userName":[LoginModel shareLoginModel].name.length>0? [LoginModel shareLoginModel].name:@"", @"orderCode":self.orderCodeTF.text, @"lat":@"0.0", @"lng":@"0.0"};
-    
-    [DriverModel getDataWithParameters:paraDict endBlock:^(id model, NSError *error) {
-        if (model) {
-            PlateNumbersController *plateNumbersVC = [PlateNumbersController new];
-            plateNumbersVC.orderCode = self.orderCodeTF.text;
-            plateNumbersVC.driverModel = model;
-            [self.navigationController pushViewController:plateNumbersVC animated:YES];
-        } else {
-            [ProgressHUD bwm_showTitle:error.userInfo[ERROR_MSG] toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
-        }
-    }];
-}
-
-//单击结束编辑
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    if (touch.view == self.view) {
-        [self.view endEditing:YES];
-    }
+    PlateNumbersController *plateNumbersVC = [PlateNumbersController new];
+    [self.navigationController pushViewController:plateNumbersVC animated:YES];
+    plateNumbersVC.orderCode = self.orderCodeTF.text;
 }
 
 - (void)didReceiveMemoryWarning {

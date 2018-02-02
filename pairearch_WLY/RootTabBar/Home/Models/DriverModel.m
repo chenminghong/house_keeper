@@ -10,18 +10,19 @@
 
 @implementation DriverModel
 
-+ (NSURLSessionDataTask *)getDataWithParameters:(NSDictionary *)paramDict endBlock:(void (^)(id, NSError *))endBlock {
-    return [NetworkHelper POST:HOME_ORDER_CHECK_API parameters:paramDict progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSInteger result = [responseObject[@"result"] integerValue];
-        NSDictionary *driverDict = responseObject[@"order"];
++ (NSURLSessionDataTask *)loadDataWithParameters:(NSDictionary *)paramDict endBlock:(void (^)(id, NSError *))endBlock {
+    return [[NetworkHelper shareClient] POST:HOME_ORDER_CHECK_API parameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        NSInteger result = [responseDict[@"result"] integerValue];
+        NSDictionary *driverDict = responseDict[@"order"];
         if ([driverDict allKeys].count > 0) {
             DriverModel *driverModel = [DriverModel getModelWithDict:driverDict];
             endBlock(driverModel, nil);
         } else {
-            NSError *error = [NSError errorWithDomain:PAIREACH_BASE_URL code:result userInfo:@{ERROR_MSG:@"该订单不存在"}];
+            NSError *error = [NSError errorWithDomain:BASE_URL code:result userInfo:@{ERROR_MSG:@"该订单不存在"}];
             endBlock(nil, error);
         }
-    } failure:^(NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         endBlock(nil, error);
     }];
 }

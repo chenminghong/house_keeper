@@ -171,6 +171,7 @@
     }];
 }
 
+
 //计算文字宽度
 - (CGFloat)widthForTextString:(NSString *)tStr height:(CGFloat)tHeight fontSize:(CGFloat)tSize{
     NSDictionary *dict = @{NSFontAttributeName:[UIFont systemFontOfSize:tSize]};

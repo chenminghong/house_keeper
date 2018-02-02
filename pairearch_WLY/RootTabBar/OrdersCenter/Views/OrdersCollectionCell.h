@@ -12,9 +12,9 @@ typedef void(^PushActionBlock)(NSArray *selectModelArr, NSIndexPath *indexPath);
 
 @interface OrdersCollectionCell : UICollectionViewCell<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) UITableView *listTableView;
+@property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, strong) NSIndexPath *indexPath;  //当前table位置
+@property (nonatomic, assign) NSInteger item;  //当前table位置
 
 @property (nonatomic, copy) NSString *type;  //当前显示的cell的订单状态
 

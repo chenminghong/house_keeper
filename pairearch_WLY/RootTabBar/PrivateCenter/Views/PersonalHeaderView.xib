@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PersonalHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XU7-g2-2X7">
+                    <rect key="frame" x="67" y="65" width="70.5" height="70"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="XU7-g2-2X7" secondAttribute="height" multiplier="1:1" id="Vo4-hg-ttN"/>
+                    </constraints>
+                    <state key="normal" image="man"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张三" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cib-Wx-oz2">
+                    <rect key="frame" x="167.5" y="79" width="41" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="J1C-Oq-lTj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18100000002" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5r-LL-8Wr">
+                    <rect key="frame" x="167.5" y="108" width="163.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next_icon_white" translatesAutoresizingMaskIntoConstraints="NO" id="Nvj-dc-kbq">
+                    <rect key="frame" x="331" y="88" width="24" height="24"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Nvj-dc-kbq" secondAttribute="height" multiplier="1:1" id="ZWm-Rn-bLx"/>
+                        <constraint firstAttribute="width" constant="24" id="vJ5-N4-9LN"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人中心" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOI-Jf-iId">
+                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="0EJ-9c-GMA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.9189414381980896" green="0.71864235401153564" blue="0.29126816987991333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="XU7-g2-2X7" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" constant="25" id="1PE-DU-6ZN"/>
+                <constraint firstItem="Nvj-dc-kbq" firstAttribute="width" secondItem="Nvj-dc-kbq" secondAttribute="height" multiplier="1:1" id="1QK-UA-6o2"/>
+                <constraint firstItem="Cib-Wx-oz2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="centerX" constant="-20" id="1cV-DS-01o"/>
+                <constraint firstItem="XU7-g2-2X7" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="60:320" id="1if-TW-ip0"/>
+                <constraint firstItem="Nvj-dc-kbq" firstAttribute="centerY" secondItem="XU7-g2-2X7" secondAttribute="centerY" id="2jH-sq-hsd"/>
+                <constraint firstItem="E5r-LL-8Wr" firstAttribute="leading" secondItem="Cib-Wx-oz2" secondAttribute="leading" id="AHQ-iv-qA4"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vOI-Jf-iId" secondAttribute="trailing" id="Dmv-LI-ViC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="centerX" secondItem="XU7-g2-2X7" secondAttribute="trailing" constant="50" id="Jxk-89-fHB"/>
+                <constraint firstItem="vOI-Jf-iId" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="RL5-fi-xSF"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Nvj-dc-kbq" secondAttribute="trailing" constant="20" id="SLA-QF-vOZ"/>
+                <constraint firstItem="Nvj-dc-kbq" firstAttribute="leading" secondItem="E5r-LL-8Wr" secondAttribute="trailing" id="Wf9-Xm-WCu"/>
+                <constraint firstItem="E5r-LL-8Wr" firstAttribute="top" secondItem="Cib-Wx-oz2" secondAttribute="bottom" constant="8" symbolic="YES" id="YSp-rN-W88"/>
+                <constraint firstItem="XU7-g2-2X7" firstAttribute="width" secondItem="XU7-g2-2X7" secondAttribute="height" multiplier="1:1" id="m8v-vB-ZsL"/>
+                <constraint firstItem="XU7-g2-2X7" firstAttribute="centerY" secondItem="Cib-Wx-oz2" secondAttribute="bottom" id="n26-Mf-aA4"/>
+                <constraint firstItem="vOI-Jf-iId" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="sdt-lx-Egb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="nextIconImg" destination="Nvj-dc-kbq" id="QOl-zG-IQQ"/>
+                <outlet property="userIconButton" destination="XU7-g2-2X7" id="d16-67-j1r"/>
+                <outlet property="userNameLabel" destination="Cib-Wx-oz2" id="8kq-nT-8nw"/>
+                <outlet property="userNumberLabel" destination="E5r-LL-8Wr" id="AxO-aj-7VO"/>
+            </connections>
+            <point key="canvasLocation" x="97.5" y="229.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="man" width="43" height="53"/>
+        <image name="next_icon_white" width="32" height="32"/>
+    </resources>
+</document>

@@ -14,6 +14,4 @@
 
 @property (nonatomic, copy) NSString *orderCode;          //运单号
 
-@property (nonatomic, strong) DriverModel *driverModel;   //司机数据模型
-
 @end

@@ -13,8 +13,8 @@
 
 @interface PlateNumbersController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *orderCodeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *selectedButton;
+@property (weak, nonatomic) IBOutlet UITextField *orderCodeTF;
 @property (weak, nonatomic) IBOutlet UITextField *plateNumberTF;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTF;
 @property (weak, nonatomic) IBOutlet UIButton *commitButton;
@@ -29,12 +29,14 @@
     
     self.title = @"自提运单";
     
-    self.selectedButton.backgroundColor = MAIN_THEME_COLOR;
-    self.selectedButton.layer.masksToBounds = YES;
+    self.view.backgroundColor = MAIN_BACKGROUND_COLOR;
+    
+    self.selectedButton.backgroundColor = [UIColor whiteColor];
     self.selectedButton.layer.cornerRadius = 5.0;
-    self.selectedButton.titleLabel.numberOfLines = 0;
-    self.selectedButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.commitButton.backgroundColor = MAIN_THEME_COLOR;
+    self.selectedButton.layer.borderWidth = 0.5;
+    self.selectedButton.layer.borderColor = UIColorFromRGB(0xcccccc).CGColor;
+    self.commitButton.backgroundColor = MAIN_BUTTON_BGCOLOR;
+    self.commitButton.layer.cornerRadius = 5;
     
     IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
     manager.enable = YES;
@@ -44,23 +46,23 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.orderCodeLabel.text = self.orderCode;
-    self.plateNumberTF.text = self.driverModel.truckNumber;
-    self.phoneNumberTF.text = self.driverModel.driverTel;
-    
-    self.navigationItem.leftBarButtonItem = [NavigationController getNavigationBackItemWithTarget:self SEL:@selector(backAction)];
+- (void)setOrderCode:(NSString *)orderCode {
+    _orderCode = orderCode;
+    self.orderCodeTF.text = orderCode;
+    NSDictionary *paraDict = @{@"sourceCode":[LoginModel shareLoginModel].code,
+                               @"orderCode":orderCode,
+                               @"driverTel":@"",
+                               OPERATION_KEY:QUERY_ORDER_LIST_API
+                               };
+    [NetworkHelper GET:PAIREACH_NETWORK_URL parameters:paraDict hudTarget:self.view progress:nil endResult:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        if (!error) {
+            NSLog(@"查询成功");
+        }
+    }];
 }
 
 
 #pragma mark -- 按钮点击事件
-
-//返回首页
-- (void)backAction {
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
 
 /**
  选择车牌省份按钮点击事件
@@ -73,7 +75,7 @@
     NSArray *provincesArr = [[NSArray alloc] initWithContentsOfFile:plistPath];
     [BidPickerView showTimeSelectViewWithTitle:@"请选择省份简称" dataArr:provincesArr selectBlock:^(id model) {
         [self.plateNumberTF becomeFirstResponder];
-        self.plateNumberTF.text = model;
+        [self.selectedButton setTitle:model forState:UIControlStateNormal];
     }];
 }
 
@@ -100,8 +102,21 @@
 //        [MBProgressHUD bwm_showTitle:@"输入的手机号格式有误！" toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL/2.0];
 //        return;
 //    }
-    NSDictionary *paraDict = @{@"userName":[LoginModel shareLoginModel].name.length>0? [LoginModel shareLoginModel].name:@"", @"mobile":self.phoneNumberTF.text, @"orderCode":self.orderCode, @"carNumber":self.plateNumberTF.text};
-    [self networkWithUrlStr:COMMIT_DRIVERINFO_API paraDict:paraDict];
+    
+    NSDictionary *paraDict = @{@"sourceCode":[LoginModel shareLoginModel].code,
+                               @"driverTel":self.phoneNumberTF.text,
+                               @"orderCode":self.orderCode,
+                               @"vehicleNumber":self.plateNumberTF.text,
+                               OPERATION_KEY:ORDER_INFO_SUBMIT_API
+                               };
+    [NetworkHelper GET:PAIREACH_NETWORK_URL parameters:paraDict hudTarget:self.view progress:nil endResult:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        if (!error) {
+            MBProgressHUD *hud = [MBProgressHUD bwm_showTitle:@"操作成功！" toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
+            [hud setCompletionBlock:^{
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }];
+        }
+    }];
 }
 
 /**
@@ -111,16 +126,16 @@
  @param paraDict 需要传递的参数
  */
 - (void)networkWithUrlStr:(NSString *)urlStr paraDict:(NSDictionary *)paraDict {
-    [NetworkHelper POST:urlStr parameters:paraDict progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSInteger result = [responseObject[@"result"] integerValue];
-        NSString *remark = responseObject[@"remark"];
-        MBProgressHUD *hud = [ProgressHUD bwm_showTitle:remark toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
-        [hud setCompletionBlock:^() {
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        }];
-    } failure:^(NSError *error) {
-        [ProgressHUD bwm_showTitle:error.userInfo[ERROR_MSG] toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
-    }];
+//    [NetworkHelper POST:urlStr parameters:paraDict progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+////        NSInteger result = [responseObject[@"result"] integerValue];
+//        NSString *remark = responseObject[@"remark"];
+//        MBProgressHUD *hud = [ProgressHUD bwm_showTitle:remark toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
+//        [hud setCompletionBlock:^() {
+//            [self.navigationController popToRootViewControllerAnimated:YES];
+//        }];
+//    } failure:^(NSError *error) {
+//        [ProgressHUD bwm_showTitle:error.userInfo[ERROR_MSG] toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
+//    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FooterButtonView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="103"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVl-bm-k3N">
+                    <rect key="frame" x="20" y="32" width="157.5" height="38"/>
+                    <color key="backgroundColor" red="0.21146011352539062" green="0.60381609201431274" blue="0.83470767736434937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="NVl-bm-k3N" secondAttribute="height" multiplier="280:68" id="EBX-pk-aGu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="确定">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="gN1-9Y-B3f"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10F-V0-T8e">
+                    <rect key="frame" x="197.5" y="32.5" width="157.5" height="38"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="取消">
+                        <color key="titleColor" red="0.21146011349999999" green="0.60381609199999997" blue="0.83470767739999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="aux-Fv-5lU"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="10F-V0-T8e" firstAttribute="height" secondItem="NVl-bm-k3N" secondAttribute="height" id="0NM-7B-Vnd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="centerX" secondItem="NVl-bm-k3N" secondAttribute="trailing" constant="10" id="3Es-Sg-AGI"/>
+                <constraint firstItem="NVl-bm-k3N" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="KxI-97-iHK"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="10F-V0-T8e" secondAttribute="trailing" constant="20" id="d1s-WD-WFT"/>
+                <constraint firstItem="NVl-bm-k3N" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="kOg-em-5r3"/>
+                <constraint firstItem="10F-V0-T8e" firstAttribute="leading" secondItem="NVl-bm-k3N" secondAttribute="trailing" constant="20" id="pAH-U1-mvK"/>
+                <constraint firstItem="10F-V0-T8e" firstAttribute="centerY" secondItem="NVl-bm-k3N" secondAttribute="centerY" id="z0P-qJ-ouc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="cancelButton" destination="10F-V0-T8e" id="YwV-H3-d5G"/>
+                <outlet property="sureButton" destination="NVl-bm-k3N" id="bFM-Wu-KTl"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="334.5"/>
+        </view>
+    </objects>
+</document>

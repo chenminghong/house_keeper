@@ -75,6 +75,7 @@
         make.right.equalTo(weakSelf.view.mas_right).with.offset(-10);
         make.bottom.equalTo(weakSelf.view.mas_bottom).with.offset(-10);
     }];
+    aboutShangHaiPaireachContent.userInteractionEnabled = NO;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -52,15 +52,15 @@
 
 @property (nonatomic, strong) SGAlertView *alertView;
 
+@property (nonatomic, assign) CGRect scanFrame;
+
 @end
 
 @implementation SGScanningQRCodeVC
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    // 创建扫描边框
-    self.scanningView = [[SGScanningQRCodeView alloc] initWithFrame:self.view.frame outsideViewLayer:self.view.layer];
-    [self.view addSubview:self.scanningView];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -72,9 +72,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"扫一扫";
-
+    
+    // 创建扫描边框
+    CGFloat scanContentViewX = scan_content_X;
+    CGFloat scanContentViewY = scan_content_Y;
+    CGFloat scanContentViewW = self.view.frame.size.width - 2 * scan_content_X;
+    CGFloat scanContentViewH = scanContentViewW;
+    CGRect scanFrame = CGRectMake(scanContentViewX, scanContentViewY, scanContentViewW, scanContentViewH);
     // 二维码扫描
-    [self setupScanningQRCode];
+    [self setupScanningQRCodeWithScanFrame:scanFrame];
+    self.scanningView = [[SGScanningQRCodeView alloc] initWithFrame:self.view.frame outsideViewLayer:self.view.layer scanFrame:scanFrame];
+    [self.view addSubview:self.scanningView];
+
     
     self.extendedLayoutIncludesOpaqueBars = YES;
     
@@ -142,59 +151,42 @@
 
 
 #pragma mark - - - 二维码扫描
-- (void)setupScanningQRCode {
-    // 1、获取摄像设备
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+- (void)setupScanningQRCodeWithScanFrame:(CGRect)scanFrame {
+    //获取摄像设备
+    AVCaptureDevice *cameraDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
-    // 2、创建输入流
-    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
+    //创建设备输入流
+    AVCaptureDeviceInput *inputDevice = [AVCaptureDeviceInput deviceInputWithDevice:cameraDevice error:nil];
+    if (!inputDevice) return;//可用判断
     
-    // 3、创建输出流
-    AVCaptureMetadataOutput *output = [[AVCaptureMetadataOutput alloc] init];
-    
-    // 4、设置代理 在主线程里刷新
-    [output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
-    
-    // 设置扫描范围(每一个取值0～1，以屏幕右上角为坐标原点)
-    // 注：微信二维码的扫描范围是整个屏幕， 这里并没有做处理（可不用设置）
-    
-//    CGFloat scanContentViewW = self.view.bounds.size.width - 2 * scan_content_X;
-//    CGFloat scanContentViewH = scanContentViewW;
-//    CGRect frame = CGRectMake(scan_content_X, scan_content_Y, scanContentViewW, scanContentViewH);
-//    NSLog(@"scanViewFrame:%@", NSStringFromCGRect(frame));
+    //创建数据输出流
+    AVCaptureMetadataOutput *outputMetadata = [[AVCaptureMetadataOutput alloc] init];
+    [outputMetadata setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
     
     
-    output.rectOfInterest = CGRectMake(0.05, 0.2, 0.7, 0.6);
+    self.session = [AVCaptureSession new];
+    [self.session setSessionPreset:AVCaptureSessionPresetHigh];
     
-    // 5、 初始化链接对象（会话对象）
-    self.session = [[AVCaptureSession alloc] init];
-    // 高质量采集率
-    [_session setSessionPreset:AVCaptureSessionPresetHigh];
+    self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
+    self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    self.previewLayer.frame = self.view.layer.bounds;
+    [self.view.layer addSublayer:self.previewLayer];
     
-    // 5.1 添加会话输入
-    [_session addInput:input];
     
-    // 5.2 添加会话输出
-    [_session addOutput:output];
-    
-    // 6、设置输出数据类型，需要将元数据输出添加到会话后，才能指定元数据类型，否则会报错
-    // 设置扫码支持的编码格式(如下设置条形码和二维码兼容)
-    output.metadataObjectTypes = @[AVMetadataObjectTypeEAN13Code,
-                                   AVMetadataObjectTypeEAN8Code,
-                                   AVMetadataObjectTypeCode128Code,
-                                   AVMetadataObjectTypeInterleaved2of5Code];
-    
-    // 7、实例化预览图层, 传递_session是为了告诉图层将来显示什么内容
-    self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_session];
-    _previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    _previewLayer.frame = self.view.layer.bounds;
-    CGRect tempRect = [self.previewLayer rectForMetadataOutputRectOfInterest:output.rectOfInterest];
-    NSLog(@"tempRect:%@", NSStringFromCGRect(tempRect));
-    // 8、将图层插入当前视图
-    [self.view.layer insertSublayer:_previewLayer atIndex:0];
-    
-    // 9、启动会话
+    //设置连接两头
+    [self.session addInput:inputDevice];
+    [self.session addOutput:outputMetadata];
+    //扫码支持编码格式(二维码+条形码)
+    outputMetadata.metadataObjectTypes = @[AVMetadataObjectTypeQRCode,
+                                           AVMetadataObjectTypeCode39Code,
+                                           AVMetadataObjectTypeITF14Code,
+                                           AVMetadataObjectTypeEAN13Code,
+                                           AVMetadataObjectTypeEAN8Code,
+                                           AVMetadataObjectTypeCode128Code,
+                                           AVMetadataObjectTypeEAN13Code];
     [_session startRunning];
+    CGRect tempRect = [self.previewLayer metadataOutputRectOfInterestForRect:scanFrame];
+    outputMetadata.rectOfInterest = tempRect;
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
@@ -213,7 +205,7 @@
     if (metadataObjects.count > 0) {
         AVMetadataMachineReadableCodeObject *obj = metadataObjects[0];
         
-        NSLog(@"metadataObjects = %@", metadataObjects);
+        NSLog(@"obj.string:%@", obj.stringValue);
         self.scanResultBlock(obj.stringValue);
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         

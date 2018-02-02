@@ -23,10 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userNumberLabel;
 @property (weak, nonatomic) IBOutlet UIView *bannerView; //顶部banner
-@property (nonatomic, strong) PaomaLabel *noticeContentL;  //通知公告栏
-@property (nonatomic, strong) WQLPaoMaView *paoma;  //公告栏；
-
-@property (nonatomic, strong) UILabel *headLabel;
+@property (weak, nonatomic) IBOutlet UIButton *scanButton;
+@property (weak, nonatomic) IBOutlet UIButton *numberButton;
 
 @end
 
@@ -37,32 +35,30 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    [self.view addSubview:self.paoma];
-    
     self.userIconBtn.layer.masksToBounds = YES;
     self.userIconBtn.layer.cornerRadius = (kScreenWidth * 6) / 32 / 2.0;
+    self.userIconBtn.layer.borderColor = UIColorFromRGB(0xfae4b2).CGColor;
+    self.userIconBtn.layer.borderWidth = 2.0;
     
+    self.userNameLabel.textColor = UIColorFromRGB(0xffffff);
+    self.userNumberLabel.textColor = UIColorFromRGB(0xffffff);
     
-    self.userNameLabel.textColor = UIColorFromRGB(0x666666);
-    self.userNumberLabel.textColor = UIColorFromRGB(0x666666);
+    self.bannerView.backgroundColor = TOP_NAVIBAR_COLOR;
     
-    self.bannerView.backgroundColor = TOP_BOTTOMBAR_COLOR;
-    
-    //从后台到前台开始动画
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActiveNotificationAction) name:UIApplicationWillEnterForegroundNotification object:nil];
+    self.scanButton.layer.cornerRadius = 10;
+    self.numberButton.layer.cornerRadius = 10;
+    self.scanButton.backgroundColor = UIColorFromRGB(0x444756);
+    self.numberButton.backgroundColor = UIColorFromRGB(0x00a7eb);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (!self.navigationController.isNavigationBarHidden) {
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
-    }
-    self.userNameLabel.text = [LoginModel shareLoginModel].name;
-    self.userNumberLabel.text = [LoginModel shareLoginModel].loginacct;
-    
-    [self.paoma startAnimation];
+//    if (!self.navigationController.isNavigationBarHidden) {
+//        [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    }
+    self.userNameLabel.text = [LoginModel shareLoginModel].account;
+    self.userNumberLabel.text = [LoginModel shareLoginModel].name;
 }
 
 
@@ -73,46 +69,7 @@
     }
 }
 
-
-//程序活跃的时候调用
-- (void)applicationDidBecomeActiveNotificationAction {
-    [self paomaViewStartAnimation];
-}
-
-//开始跑马灯
-- (void)paomaViewStartAnimation {
-    if (self.tabBarController.selectedIndex == 0) {
-        [self.paoma startAnimation];
-    }
-}
-
 #pragma mark -- LazyLoading
-
-- (WQLPaoMaView *)paoma {
-    if (!_paoma) {
-        self.paoma = [[WQLPaoMaView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.bannerView.frame), self.view.frame.size.width, 40) withTitle:@"Copyright©2017 上海双至供应链管理有限公司"];
-        [self.view addSubview:self.paoma];
-        [self.paoma mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.bannerView.mas_bottom);
-            make.left.equalTo(self.view);
-            make.right.equalTo(self.view);
-            make.height.mas_equalTo(40);
-        }];
-        self.paoma.backgroundColor = MAIN_THEME_COLOR;
-    }
-    return _paoma;
-}
-
-- (UILabel *)headLabel {
-    if (!_headLabel) {
-        self.headLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 60.0)];
-        self.headLabel.textAlignment = NSTextAlignmentCenter;
-        self.headLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-        self.headLabel.textColor = MAIN_THEME_COLOR;
-        self.headLabel.text = @"装货在途";
-    }
-    return _headLabel;
-}
 
 
 
@@ -123,20 +80,25 @@
  @param paraDict 需要传递的参数
  */
 - (void)networkWithUrlStr:(NSString *)urlStr paraDict:(NSDictionary *)paraDict {
-    [NetworkHelper POST:urlStr parameters:paraDict progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSString *msg = responseObject[@"remark"];
+//    [NetworkHelper POST:urlStr parameters:paraDict progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSString *msg = responseObject[@"remark"];
+//        [ProgressHUD bwm_showTitle:msg toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
+//    } failure:^(NSError *error) {
+//        [MBProgressHUD bwm_showTitle:error.userInfo[ERROR_MSG] toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
+//    }];
+    MBProgressHUD *hud = [ProgressHUD bwm_showTitle:kBWMMBProgressHUDMsgLoading toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
+    [[NetworkHelper shareClient] POST:urlStr parameters:paraDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [hud hide:YES];
+        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        NSString *msg = responseDict[@"remark"];
         [ProgressHUD bwm_showTitle:msg toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
-    } failure:^(NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [hud hide:YES];
         [MBProgressHUD bwm_showTitle:error.userInfo[ERROR_MSG] toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
     }];
 }
 
 #pragma mark -- ButtonAction
-
-- (IBAction)telePhoneAction:(UIButton *)sender {
-    NSString *str=[NSString stringWithFormat:@"telprompt://%@", @"021-66188125"];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-}
 
 /**
  扫描二维码按钮点击事件
@@ -150,9 +112,29 @@
         __weak typeof(self) weakself = self;
         SGScanningQRCodeVC *codeVC = [SGScanningQRCodeVC getSgscanningQRCodeVCWithResultBlock:^(NSString *scanResult) {
             //扫描结束回调
-            NSLog(@"%@", scanResult);
-            NSDictionary *paraDict = @{@"userName":[LoginModel shareLoginModel].loginacct.length>0? [LoginModel shareLoginModel].loginacct:@"", @"orderCode":scanResult, @"lat":@"0.0", @"lng":@"0.0"};
-            [self networkWithUrlStr:QRCODE_SCAN_API paraDict:paraDict];
+            NSData *jsonData = [[NSData alloc] initWithBase64EncodedString:scanResult options:0];
+            if (jsonData) {
+                NSError *error = nil;
+                NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+                if (!error) {
+                    NSMutableDictionary *paraDict = [NSMutableDictionary dictionaryWithDictionary:jsonDict];
+                    [paraDict setObject:[LoginModel shareLoginModel].code forKey:@"sourceCode"];
+                    [paraDict setObject:QRCODE_SCAN_API forKey:OPERATION_KEY];
+                    [NetworkHelper POST:PAIREACH_NETWORK_URL parameters:paraDict hudTarget:self.view progress:nil endResult:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                        if (!error) {
+                            MBProgressHUD *hud = [MBProgressHUD bwm_showTitle:@"扫描成功！" toView:self.view hideAfter:HUD_HIDE_TIMEINTERVAL];
+                            hud.labelFont = [UIFont systemFontOfSize:36.0];
+                            hud.cornerRadius = 0.0;
+                            hud.minSize = [UIScreen mainScreen].bounds.size;
+                        }
+                    }];
+                }
+            } else {
+                MBProgressHUD *hud = [MBProgressHUD bwm_showTitle:@"扫描参数错误！" toView:[UIApplication sharedApplication].keyWindow hideAfter:HUD_HIDE_TIMEINTERVAL];
+                hud.labelFont = [UIFont systemFontOfSize:36.0];
+                hud.cornerRadius = 0.0;
+                hud.minSize = [UIScreen mainScreen].bounds.size;
+            }
         }];
         NavigationController *naviNC = [[NavigationController alloc] initWithRootViewController:codeVC];
         codeVC.navigationItem.leftBarButtonItem = [NavigationController getNavigationBackItemWithTarget:codeVC SEL:@selector(dismissModalViewControllerAnimated:)];
@@ -168,15 +150,8 @@
  @param sender 点击的按钮
  */
 - (IBAction)selfGetNumberAction:(UIButton *)sender {
-    NSLog(@"%@", sender.currentTitle);
     AdaptiveCodeController *adaptiveVC = [AdaptiveCodeController new];
     [self.navigationController pushViewController:adaptiveVC animated:YES];
-    
-}
-
-- (void)dealloc {
-    //移除观察者
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {

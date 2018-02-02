@@ -29,44 +29,73 @@
         [self setValuesForKeysWithDictionary:userInfo];
     }
     
-        
-    //开启友盟账号登录
-    NSString *name = [NSString stringWithFormat:@"%@", [LoginModel shareLoginModel].name];
-    [MobClick profileSignInWithPUID:name];
-}
-
-- (void)setValue:(id)value forKey:(NSString *)key {
-    [super setValue:[NSString stringWithFormat:@"%@", value] forKey:key];
-    if ([key isEqualToString:@"id"]) {
-        self.userId = [NSString stringWithFormat:@"%@", value];
+    if (self.fullName && self.phone) {
+        NSString *name = [NSString stringWithFormat:@"%@_%@", [LoginModel shareLoginModel].fullName, [LoginModel shareLoginModel].phone];
+                
+        //开启友盟账号登录
+        [MobClick profileSignInWithPUID:name];
     }
 }
 
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    
+- (void)setValue:(id)value forKey:(NSString *)key {
+    if ([key isEqualToString:@"userRelationMap"]) {
+        NSDictionary *tempDict = value;
+        NSArray *infoArr = tempDict[@"source"];
+        if (infoArr.count > 0) {
+            NSDictionary *sourceDict = [infoArr objectAtIndex:0];
+            _code = sourceDict[@"code"];
+            _name = sourceDict[@"name"];
+        }
+    } else {
+        [super setValue:value forKey:key];
+    }
 }
 
+- (NSString *)phone {
+    if (_phone.length <= 0) {
+        return @"";
+    }
+    return _phone;
+}
 
-+ (NSURLSessionDataTask *)getDataWithParameters:(NSDictionary *)paramDict endBlock:(void (^)(id, NSError *))endBlock {
-    return [[NetworkHelper shareClient] POST:USER_LOGIN_API parameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (!endBlock) {
-            return;
-        }
-        NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        NSInteger resultFlag = [[dataDict objectForKey:@"loginResult"] integerValue];
-        
-        //如果resultFlag是0，说明用户名和密码不正确，直接return
-        if (resultFlag == 0) {
-            endBlock(nil, [NSError errorWithDomain:PAIREACH_BASE_URL code:resultFlag userInfo:@{ERROR_MSG:@"账号或密码错误，请重新登录！"}]);
-        } else {
-            NSDictionary *responseEntity = [dataDict objectForKey:@"operator"];
-            //将登录成功返回的数据存到model中
-            [[LoginModel shareLoginModel] updateUserInfoWithInfoDict:responseEntity];
-            endBlock([LoginModel shareLoginModel], nil);
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+- (NSString *)account {
+    if (_account.length <= 0) {
+        return @"";
+    }
+    return _account;
+}
+
+- (NSString *)code {
+    if (_code.length <= 0) {
+        return @"";
+    }
+    return _code;
+}
+
++ (NSURLSessionDataTask *)getDataWithUrl:(NSString *)url parameters:(NSDictionary *)paramDict endBlock:(EndResultBlock)endBlock {
+    return [NetworkHelper POST:url parameters:paramDict progress:nil endResult:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (endBlock) {
-            endBlock(nil, error);
+            if (!error) {
+                //将登录成功返回的数据存到model中
+                [[LoginModel shareLoginModel] updateUserInfoWithInfoDict:responseObject];
+                endBlock(task, [LoginModel shareLoginModel], nil);
+            } else {
+                endBlock(task, nil, error);
+            }
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getDataWithUrl:(NSString *)url parameters:(NSDictionary *)paramDict hudTarget:(id)hudTarget endBlock:(EndResultBlock)endBlock {
+    return [NetworkHelper POST:url parameters:paramDict hudTarget:hudTarget progress:nil endResult:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        if (endBlock) {
+            if (!error) {
+                //将登录成功返回的数据存到model中
+                [[LoginModel shareLoginModel] updateUserInfoWithInfoDict:responseObject];
+                endBlock(task, [LoginModel shareLoginModel], nil);
+            } else {
+                endBlock(task, nil, error);
+            }
         }
     }];
 }
@@ -104,5 +133,6 @@
     }
     return nil;
 }
+
 
 @end

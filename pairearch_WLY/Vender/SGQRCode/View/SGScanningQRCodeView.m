@@ -40,29 +40,27 @@ static CGFloat const scanBorderOutsideViewAlpha = 0.4;
 /** 定时器和动画的时间 */
 static CGFloat const timer_animation_Duration = 0.05;
 
-- (instancetype)initWithFrame:(CGRect)frame outsideViewLayer:(CALayer *)outsideViewLayer {
+- (instancetype)initWithFrame:(CGRect)frame outsideViewLayer:(CALayer *)outsideViewLayer scanFrame:(CGRect)scanFrame {
     if (self = [super initWithFrame:frame]) {
         _basedLayer = outsideViewLayer;
          // 创建扫描边框
-         [self setupScanningQRCodeEdging];
+         [self setupScanningQRCodeEdgingWithScanFrame:scanFrame];
     }
     return self;
 }
 
-+ (instancetype)scanningQRCodeViewWithFrame:(CGRect)frame outsideViewLayer:(CALayer *)outsideViewLayer {
-    return [[self alloc] initWithFrame:frame outsideViewLayer:outsideViewLayer];
++ (instancetype)scanningQRCodeViewWithFrame:(CGRect)frame outsideViewLayer:(CALayer *)outsideViewLayer scanFrame:(CGRect)scanFrame {
+    return [[self alloc] initWithFrame:frame outsideViewLayer:outsideViewLayer scanFrame:scanFrame];
 }
 
-
 // 创建扫描边框
-- (void)setupScanningQRCodeEdging {
+- (void)setupScanningQRCodeEdgingWithScanFrame:(CGRect)scanFrame {
     // 扫描内容的创建
     UIView *scanContentView = [[UIView alloc] init];
-    CGFloat scanContentViewX = scanContent_X;
-    CGFloat scanContentViewY = scanContent_Y;
-    CGFloat scanContentViewW = self.frame.size.width - 2 * scanContent_X;
-    CGFloat scanContentViewH = scanContentViewW;
-    scanContentView.frame = CGRectMake(scanContentViewX, scanContentViewY, scanContentViewW, scanContentViewH);
+    CGFloat scanContentViewY = CGRectGetMinY(scanFrame);
+    CGFloat scanContentViewH = CGRectGetHeight(scanFrame);
+    
+    scanContentView.frame = scanFrame;
     scanContentView.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6].CGColor;
     scanContentView.layer.borderWidth = 0.7;
     scanContentView.backgroundColor = [UIColor clearColor];

@@ -29,12 +29,12 @@ typedef NS_ENUM(NSUInteger, NetworkStatus) {
     NetworkStatusWIFI // WIFI
 };
 
+typedef void(^EndResultBlock)(NSURLSessionDataTask *task, id responseObject, NSError *error);
+
 @interface NetworkHelper : AFHTTPSessionManager
 
 //init
 + (instancetype)shareClient;
-
-+ (instancetype)shareClientOther;
 
 //判断网络状态
 + (NetworkReachabilityStatus)localizedNetworkReachabilityStatus;
@@ -43,12 +43,23 @@ typedef NS_ENUM(NSUInteger, NetworkStatus) {
 + (NetworkStatus)getNetworkStatus;
 
 //get请求
-+ (NSURLSessionDataTask *)GET:(NSString *)URLString parameters:(id)parameters progress:(void (^)(NSProgress *progress))progress success:(void (^)(NSURLSessionDataTask *task, MBProgressHUD *hud, id responseObject))success failure:(void (^)(NSError *error))failure;
++ (NSURLSessionDataTask *)GET:(NSString *)URLString parameters:(id)parameters progress:(void (^)(NSProgress *progress))progress endResult:(EndResultBlock)endResult;
 
 //post请求
-+ (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters progress:(void (^)(NSProgress *progress))progress success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSError *error))failure;
++ (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters progress:(void (^)(NSProgress *progress))progress endResult:(EndResultBlock)endResult;
 
 //post请求(上传文件)
-+ (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block progress:(void (^)(NSProgress *uploadProgress))progress success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSError *error))failure;
++ (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block progress:(void (^)(NSProgress *uploadProgress))progress endResult:(EndResultBlock)endResult;
+
+//target是当前请求的View或者ViewController, 用来展示当前的HUD提示
+
+//get请求
++ (NSURLSessionDataTask *)GET:(NSString *)URLString parameters:(id)parameters hudTarget:(id)hudTarget progress:(void (^)(NSProgress *progress))progress endResult:(EndResultBlock)endResult;
+
+//post请求
++ (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters hudTarget:(id)hudTarget progress:(void (^)(NSProgress *progress))progress endResult:(EndResultBlock)endResult;
+
+//post请求(上传文件)
++ (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters hudTarget:(id)hudTarget constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block progress:(void (^)(NSProgress *uploadProgress))progress endResult:(EndResultBlock)endResult;
 
 @end
